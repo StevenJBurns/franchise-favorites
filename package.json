@@ -1,0 +1,19 @@
+{
+  "name": "franchise-favorites",
+  "version": "0.1.0",
+  "author": "Steven J Burns",
+  "license": "ISC",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StevenJBurns/franchise-favorites.git"
+  },
+  "bugs": { "url": "https://github.com/StevenJBurns/franchise-favorites/issues" },
+  "homepage": "https://github.com/StevenJBurns/franchise-favorites#readme",
+  "keywords": []
+}

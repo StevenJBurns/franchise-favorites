@@ -9,6 +9,7 @@ const express = require("express");
 const favicon = require("serve-favicon");
 
 /* Local Dependencies */
+let router = require("./router.js");
 
 /* Connect .env file values to Node process.env */
 require("dotenv").config();
@@ -23,7 +24,6 @@ server.all("*", (req, res) => {
   res.send("HI");
 });
 
-server.listen(process.env.PORT || 3000, () => {
-  console.log(chalk.bgBlackBright.white(` Express Server started: ${process.env.APPNAME} `));
-  console.log(chalk.bgBlackBright.white(` Listening on port ${process.env.PORT} `));
-});
+server.listen(process.env.PORT || 3000, () =>
+  console.log(chalk.bgWhite.black(`  Express Server Started on Port ${process.env.PORT}  `))
+);

@@ -1,6 +1,4 @@
 /* Node Dependencies */
-const fs = require("fs");
-const url = require("url");
 const path = require("path");
 
 /* External Dependencies */
@@ -18,10 +16,13 @@ require("dotenv").config();
 const server = new express();
 console.clear();
 
+/* favicon middleware */
+server.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+
 /* Catch all incoming routes */
 server.all("*", (req, res) => {
   console.log(req.url);
-  res.send("HI");
+  res.send();
 });
 
 server.listen(process.env.PORT || 3000, () =>

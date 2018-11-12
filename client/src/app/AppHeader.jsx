@@ -1,10 +1,11 @@
 import React from "react";
-import { PromiseProvider } from "mongoose";
 
 
 const AppHeader = (props) => {
   return (
-    <header id="app-header">{props.children}</header>
+    <header id="app-header">
+      <h2>FRANCHISE FAVORITES</h2>
+    </header>
   );
 };
 

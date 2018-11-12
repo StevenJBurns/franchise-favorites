@@ -10,7 +10,6 @@
 }
 
 #app-nav {
-  min-height: 48px;
   background-color: #BFBFBF;
   color: #0F0F0F
 }
@@ -18,11 +17,25 @@
 #app-nav ul {
   display: flex;
   flex-direction: row;
+  align-self: center;
+  justify-content: center;
+  list-style: none
 }
 
 #app-nav li {
-  margin: 4px;
-  
+  margin: 8px;
+  padding: 4px;
+  min-width: 96px;
+  text-align: center;
+  background-color: #7F7F7F;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.25s
+}
+
+#app-nav li:hover {
+  color: white;
+  background-color: black
 }
 
 #app-main {

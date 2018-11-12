@@ -8,9 +8,9 @@ import AppFooter from "./AppFooter.jsx";
 
 
 /* Style and Asset Imports */
-import '../styles/App.css';
+import '../../styles/App.css';
 import './AppComponents.css';
-import logo from '../assets/logo.svg';
+import logo from '../../assets/logo.svg';
 
 
 class App extends React.Component {

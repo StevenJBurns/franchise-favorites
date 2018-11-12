@@ -1,6 +1,7 @@
 {
-  "name": "client",
+  "name": "franchise-favorites-react-client",
   "version": "0.1.0",
+  "author": "Steven J Burns",
   "private": true,
   "dependencies": {
     "react": "^16.6.1",

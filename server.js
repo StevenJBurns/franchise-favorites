@@ -30,9 +30,13 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, () => {
 server.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 /* Routing Middleware */
+server.use(express.static(path.join(__dirname, "client", "build")));
+
 server.use("/", router);
 
+server.get("*", (req, res) => res.sendFile(path.join(__dirname, "client", "build", "index.html")));
 
+/* Start the Express server */ 
 server.listen(process.env.PORT || 8000, () =>
   console.log(chalk.bgWhite.black(`  Express Server Started on Port ${process.env.PORT}  `))
 );

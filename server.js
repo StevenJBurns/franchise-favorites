@@ -18,9 +18,12 @@ require("dotenv").config();
 const server = new express();
 console.clear();
 
+/* Morgan Middleware for logging */
+server.use(logger("dev"));
+
 /* connect to MongoDB via mongoose */
-mongoose.connect('mongodb://localhost:27017/franchise-favorites', { useNewUrlParser: true }, () => {
-  console.log(chalk.bgWhite.black(`            Connected to DB            `))
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, () => {
+  console.log(chalk.bgWhite.black(`           Connected to DB             `))
 });
 
 /* serve-favicon Middleware */
@@ -30,6 +33,6 @@ server.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 server.use("/", router);
 
 
-server.listen(process.env.PORT || 3000, () =>
+server.listen(process.env.PORT || 8000, () =>
   console.log(chalk.bgWhite.black(`  Express Server Started on Port ${process.env.PORT}  `))
 );

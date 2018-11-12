@@ -15,6 +15,16 @@
   color: #0F0F0F
 }
 
+#app-nav ul {
+  display: flex;
+  flex-direction: row;
+}
+
+#app-nav li {
+  margin: 4px;
+  
+}
+
 #app-main {
   flex: 1 0 auto;
   background-color: #DFDFDF;

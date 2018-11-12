@@ -1,8 +1,11 @@
 import React from "react";
+import { PromiseProvider } from "mongoose";
 
 
-const AppHeader = () => {
+const AppHeader = (props) => {
   return (
-    <header></header>
+    <header id="app-header">{props.children}</header>
   );
-}
+};
+
+export default AppHeader;

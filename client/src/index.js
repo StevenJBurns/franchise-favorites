@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 /* Local Dependencies */
-import App from './components/App';
+import App from './app/App.jsx';
 import './styles/index.css';
 import * as serviceWorker from './serviceWorker';
 

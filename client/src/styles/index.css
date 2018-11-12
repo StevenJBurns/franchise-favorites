@@ -10,6 +10,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#react-root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: #282c34
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

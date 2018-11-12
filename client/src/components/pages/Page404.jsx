@@ -3,7 +3,9 @@ import React from "react";
 
 const Page404 = () => {
   return (
-    <main></main>
+    <main>
+      <h1>PAGE 404</h1>
+    </main>
   );
 };
 

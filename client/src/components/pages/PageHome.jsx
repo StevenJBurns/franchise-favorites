@@ -3,7 +3,9 @@ import React from "react";
 
 const PageHome = () => {
   return (
-    <main></main>
+    <main>
+      <h1>PAGE HOME</h1>
+    </main>
   );
 };
 

@@ -3,7 +3,9 @@ import React from "react";
 
 const PageMyFavorites = () => {
   return (
-    <main></main>
+    <main>
+      <h1>PAGE FAVORITES</h1>
+    </main>
   );
 };
 

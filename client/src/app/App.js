@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-class App extends Component {
+import logo from '../assets/logo.svg';
+import '../styles/App.css';
+
+
+class App extends React.Component {
   render() {
     return (
       <div className="App">

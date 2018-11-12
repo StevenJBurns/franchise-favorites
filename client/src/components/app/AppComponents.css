@@ -1,12 +1,16 @@
 #app-header {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
   min-height: 64px;
   text-align: center;
   background: #9F9F9F;
   color: #0F0F0F
+}
+
+#app-header * {
+  margin: 4px
 }
 
 #app-nav {
@@ -23,7 +27,7 @@
 }
 
 #app-nav li {
-  margin: 8px;
+  margin: 4px;
   padding: 4px;
   min-width: 96px;
   text-align: center;
@@ -55,6 +59,22 @@ main {
   text-align: center;
   background-color: #DFDFDF;
   color: #0F0F0F
+}
+
+#section-franchise-tiles {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-flow: wrap
+}
+
+.article-franchise-tile {
+  margin: 8px;
+  width: 128px;
+  height: 128px;
+  border-radius: 4px;
+  background-color: #BFBFBF;
+  display: inline-block;
 }
 
 #app-footer {

@@ -38,7 +38,13 @@
   background-color: black
 }
 
-#app-main {
+#app-nav a:link,
+#app-nav a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+main {
   flex: 1 0 auto;
   background-color: #DFDFDF;
   color: #0F0F0F

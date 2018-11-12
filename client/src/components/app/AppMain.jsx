@@ -12,8 +12,8 @@ const AppMain = () => {
     <React.Fragment>
       <Switch>
         <Route exact path="/" component={PageHome} />
-        <Route exact path="/my-favorites" component={PageMyFavorites} />
         <Route exact path="/franchises" component={PageFranchises} />
+        <Route exact path="/my-favorites" component={PageMyFavorites} />
         <Route component={Page404} />
       </Switch>
     </React.Fragment>

@@ -7,8 +7,8 @@ const AppNav = (props) => {
     <nav id="app-nav">
       <ul>
         <li><NavLink to="/" exact>HOME</NavLink></li>
-        <li><NavLink to="/my-favorites">MY FAVORITES</NavLink></li>
         <li><NavLink to="/franchises">FRANCHISES</NavLink></li>
+        <li><NavLink to="/my-favorites">MY FAVORITES</NavLink></li>
       </ul>
     </nav>
   );

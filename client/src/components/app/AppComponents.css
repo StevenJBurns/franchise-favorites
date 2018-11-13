@@ -76,8 +76,12 @@ main {
 #section-franchise-tiles {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  flex-flow: wrap
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  flex-flow: wrap;
+  margin: 0 auto;
+  width: auto
 }
 
 .article-franchise-tile {

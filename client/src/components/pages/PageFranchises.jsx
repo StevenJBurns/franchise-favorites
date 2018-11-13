@@ -14,8 +14,7 @@ const testData = [
   { title: "Die Hard", imageURL: "" },
   { title: "Jurassic", imageURL: "" },
   { title: "Hunger Games", imageURL: "" },
-  { title: "Indiana Jones", imageURL: "" },
-  {}
+  { title: "Indiana Jones", imageURL: "" }
 ];
 
 const PageFranchises = () => {

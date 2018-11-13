@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 
 const franchiseSchema = new mongoose.Schema({
@@ -6,9 +6,6 @@ const franchiseSchema = new mongoose.Schema({
   imageURL: { type: String},
   movies: { type: Array, required: true },
   characters: { type: Array }
-},
-{
-  timestamps: true
 });
 
-module.exports = mongoose.model("franchise", franchiseSchema);
+module.exports = franchiseModel = mongoose.model("franchise", franchiseSchema);

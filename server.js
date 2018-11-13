@@ -22,9 +22,9 @@ console.clear();
 server.use(logger("dev"));
 
 /* connect to MongoDB via mongoose */
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, () => {
-  console.log(chalk.bgWhite.black(`           Connected to DB             `))
-});
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+  .then(() => console.log(chalk.bgWhite.black(`           Connected to DB             `)))
+  .catch(err => console.error(err));
 
 /* serve-favicon Middleware */
 server.use(favicon(path.join(__dirname, "public", "favicon.ico")));

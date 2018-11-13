@@ -9,10 +9,10 @@ import './styles/index.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <App />    
-    </BrowserRouter>,
-    document.querySelector('#react-root')
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <App />    
+  </BrowserRouter>,
+  document.querySelector('#react-root')
 );
 
 // If you want your app to work offline and load faster, you can change unregister() to register() below.

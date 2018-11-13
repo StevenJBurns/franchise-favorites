@@ -21,9 +21,6 @@ const testData = [
 const PageFranchises = () => {
   return (
     <main>
-      <ul>
-        {/* {testData.map((item, index) => (<li key={index}>{item}</li>))} */}
-      </ul>
       <section id="section-franchise-tiles">
         { testData.map((item, index) => (<FranchiseTile key={index} title={item.title} imageURL={item.imageURL} />)) }
       </section>

@@ -3,8 +3,8 @@ const routerAPI = require("./routerAPI");
 
 router.use("/api", routerAPI);
 
-router.get("/", (req, res) => {
-    res.send("Root");
-})
+// router.get("/", (req, res) => {
+//     res.send("Root");
+// })
 
 module.exports = router;

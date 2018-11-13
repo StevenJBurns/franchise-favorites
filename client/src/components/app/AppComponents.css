@@ -5,8 +5,8 @@
   flex-direction: row;
   min-height: 64px;
   text-align: center;
-  background: #9F9F9F;
-  color: #0F0F0F
+  background: rgb(69, 0, 133);
+  color: #F0F0F0
 }
 
 #app-header * {
@@ -14,7 +14,8 @@
 }
 
 #app-nav {
-  background-color: #BFBFBF;
+  height: 48px;
+  background: rgb(97, 0, 187);
   color: #0F0F0F
 }
 
@@ -27,25 +28,36 @@
 }
 
 #app-nav li {
+  display: table;
   margin: 4px;
-  padding: 4px;
-  min-width: 96px;
+  height: 28px;
+  min-width: 120px;
   text-align: center;
-  background-color: #7F7F7F;
-  border-radius: 4px;
+  background-color: rgb(177, 80, 0);
+  border-radius: 2px;
   cursor: pointer;
   transition: all 0.25s
 }
 
 #app-nav li:hover {
   color: white;
-  background-color: black
+  background-color: rgb(252, 135, 40);
+}
+
+#app-nav a {
+  vertical-align: middle;
+  display: table-cell;
 }
 
 #app-nav a:link,
 #app-nav a:visited {
   color: white;
   text-decoration: none;
+}
+
+.active-navlink {
+  background-color: rgb(255, 115, 0);
+  transition: all 0.5s
 }
 
 main {
@@ -57,7 +69,7 @@ main {
   margin: 0 auto;
   max-width: 720px;
   text-align: center;
-  background-color: #DFDFDF;
+  /* background: rgb(222, 188, 255); */
   color: #0F0F0F
 }
 
@@ -73,8 +85,15 @@ main {
   width: 128px;
   height: 128px;
   border-radius: 4px;
+  border: 4px solid transparent;
   background-color: #BFBFBF;
   display: inline-block;
+  transition: all 0.5s
+}
+
+.article-franchise-tile:hover {
+  border-color: #0F0F0F;
+  background-color: #9F9F9F
 }
 
 #app-footer {
@@ -84,6 +103,6 @@ main {
   justify-content: center;
   min-height: 64px;
   text-align: center;
-  background: #9F9F9F;
-  color: #0F0F0F
+  background: rgb(69, 0, 133);
+  color: #F0F0F0
 }

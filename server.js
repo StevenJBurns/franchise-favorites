@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 
 /* Local Dependencies */
-let router = require("./router.js");
+let routerAPI = require("./routerAPI.js");
 
 /* Connect .env file values to Node process.env */
 require("dotenv").config();
@@ -32,7 +32,7 @@ server.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 /* Routing Middleware */
 server.use(express.static(path.join(__dirname, "client", "build")));
 
-server.use("/", router);
+server.use("/api", routerAPI);
 
 server.get("*", (req, res) => res.sendFile(path.join(__dirname, "client", "build", "index.html")));
 

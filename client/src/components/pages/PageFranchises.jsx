@@ -12,7 +12,6 @@ class PageFranchises extends React.Component {
     };
   }
 
-
   componentDidMount() {
     fetch("/api/franchises")
       .then(data => data.json())

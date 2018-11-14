@@ -33,7 +33,9 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 server.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 /* Routing Middleware to catch the index.html request and serve up the React client */
-server.use(express.static(path.join(__dirname, "client", "build")));
+server.use("/", express.static(path.join(__dirname, "client", "build")));
+
+server.use("/public", express.static(path.join(__dirname, "public")));
 
 /* Router to catch /api only routes */
 server.use("/api", routerAPI);

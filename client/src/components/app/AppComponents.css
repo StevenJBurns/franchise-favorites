@@ -125,7 +125,8 @@ main {
   justify-self: center;
   flex-flow: wrap;
   margin: 0 auto;
-  width: auto
+  width: auto;
+  cursor: pointer
 }
 
 .article-franchise-tile {

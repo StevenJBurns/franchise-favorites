@@ -27,9 +27,7 @@
     "type": "git",
     "url": "git+https://github.com/StevenJBurns/franchise-favorites.git"
   },
-  "bugs": {
-    "url": "https://github.com/StevenJBurns/franchise-favorites/issues"
-  },
+  "bugs": { "url": "https://github.com/StevenJBurns/franchise-favorites/issues" },
   "homepage": "https://github.com/StevenJBurns/franchise-favorites#readme",
   "keywords": []
 }

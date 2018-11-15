@@ -19,6 +19,7 @@ routerAPI.get("/userAccounts", (req, res) => {
 
 routerAPI.post("/register", (req, res, next) => {
   const { email, password } = req.body;
+  console.log(email, password);
   res.status(201).send({ email, password });
 });
 

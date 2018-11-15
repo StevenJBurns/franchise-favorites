@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./FranchiseTile.css";
+
 
 const FranchiseTile = (props) => {
   const { title, imageURL } = props;

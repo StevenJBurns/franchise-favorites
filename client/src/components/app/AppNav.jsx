@@ -11,7 +11,7 @@ const AppNav = (props) => {
       <ul>
         <li><NavLink activeClassName="active-navlink" to="/" exact>HOME</NavLink></li>
         <li><NavLink activeClassName="active-navlink" to="/franchises">FRANCHISES</NavLink></li>
-        <li><NavLink activeClassName="active-navlink" to="/my-favorites">MY FAVORITES</NavLink></li>
+        <li><NavLink activeClassName="active-navlink" to="/favorites">MY FAVORITES</NavLink></li>
       </ul>
     </nav>
   );

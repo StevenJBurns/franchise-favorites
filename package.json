@@ -20,6 +20,9 @@
     "rollup": "^0.67.1",
     "serve-favicon": "^2.5.0"
   },
+  "devDependencies": {
+    "rollup-plugin-node-resolve": "^3.4.0"
+  },
   "engines": {
     "node": "10.13.0",
     "npm": "6.4.1"
@@ -32,8 +35,5 @@
     "url": "https://github.com/StevenJBurns/franchise-favorites/issues"
   },
   "homepage": "https://github.com/StevenJBurns/franchise-favorites#readme",
-  "keywords": [],
-  "devDependencies": {
-    "rollup-plugin-node-resolve": "^3.4.0"
-  }
+  "keywords": []
 }

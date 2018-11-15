@@ -10,51 +10,6 @@ main {
   color: #0F0F0F
 }
 
-#form-sign-up {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  width: 320px;
-  border-radius: 8px;
-  box-shadow: 0 0 20px #0F0F0F;
-  background-color: rgb(228, 102, 0);
-  color: #F0F0F0
-}
-
-#form-sign-up * {
-  margin: 4px
-}
-
-#form-sign-up button {
-  margin: 4px auto;
-  width: 128px;
-  height: 36px;
-  font-size: 20px
-}
-
-
-#form-sign-in {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  width: 320px;
-  border-radius: 8px;
-  box-shadow: 0 0 20px #0F0F0F;
-  background-color: rgb(228, 102, 0);
-  color: #F0F0F0
-}
-
-#form-sign-in * {
-  margin: 4px
-}
-
-#form-sign-in button {
-  margin: 4px auto;
-  width: 128px;
-  height: 36px;
-  font-size: 20px
-}
-
 #section-franchise-tiles {
   display: flex;
   flex-direction: row;

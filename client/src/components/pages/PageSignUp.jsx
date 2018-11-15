@@ -1,5 +1,8 @@
 import React from "react";
 
+import "./PageSignUp.css";
+
+
 const PageSignUp = () => {
   return (
     <main>

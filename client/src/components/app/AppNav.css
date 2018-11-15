@@ -1,0 +1,46 @@
+#app-nav {
+  height: 48px;
+  background: rgb(97, 0, 187);
+  color: #0F0F0F
+}
+
+#app-nav ul {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: center;
+  list-style: none
+}
+
+#app-nav li {
+  display: table;
+  margin: 4px;
+  height: 28px;
+  min-width: 120px;
+  text-align: center;
+  background-color: rgb(177, 80, 0);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.25s
+}
+
+#app-nav li:hover {
+  color: white;
+  background-color: rgb(252, 135, 40);
+}
+
+#app-nav a {
+  vertical-align: middle;
+  display: table-cell;
+}
+
+#app-nav a:link,
+#app-nav a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.active-navlink {
+  background-color: rgb(255, 115, 0);
+  transition: all 0.5s
+}

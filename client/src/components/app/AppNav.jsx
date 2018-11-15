@@ -1,6 +1,9 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
 
+/* Stylesheets */
+import "./AppNav.css";
+
 
 const AppNav = (props) => {
   return (

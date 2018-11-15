@@ -1,0 +1,21 @@
+#app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  min-height: 64px;
+  text-align: center;
+  background: rgb(69, 0, 133);
+  color: #F0F0F0
+}
+
+#app-header h2 {
+  margin: 4px;
+  display: inline-block
+}
+
+#app-header span {
+  margin: 0;
+  width: 4em;
+  display: inline-block
+}

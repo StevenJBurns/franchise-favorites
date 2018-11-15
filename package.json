@@ -18,11 +18,10 @@
     "mongoose": "^5.3.12",
     "morgan": "^1.9.1",
     "rollup": "^0.67.1",
+    "rollup-plugin-node-resolve": "^3.4.0",
     "serve-favicon": "^2.5.0"
   },
-  "devDependencies": {
-    "rollup-plugin-node-resolve": "^3.4.0"
-  },
+  "devDependencies": {},
   "engines": {
     "node": "10.13.0",
     "npm": "6.4.1"

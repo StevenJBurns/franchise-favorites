@@ -1,3 +1,4 @@
+const express = require("express");
 const routerAPI = require("express").Router();
 
 const franchiseModel = require("./models/franchiseModel");
@@ -14,6 +15,11 @@ routerAPI.get("/userAccounts", (req, res) => {
   userAccountModel.find()
     // .then(() => console.log("from the userAccounts end point"))
     .then(userAccounts => res.json(userAccounts));
-})
+});
+
+routerAPI.post("/register", (req, res, next) => {
+  const { email, password } = req.body;
+  res.status(201).send({ email, password });
+});
 
 module.exports = routerAPI;

@@ -8,9 +8,9 @@ import App from './components/app/App.jsx';
 import './styles/index.css';
 import * as serviceWorker from './serviceWorker';
 
-const AuthContext = React.createContext({});
-export const AuthProvider = AuthContext.Provider;
-export const AuthConsumer = AuthContext.Consumer;
+export const AuthContext = React.createContext({});
+// export const AuthProvider = AuthContext.Provider;
+// export const AuthConsumer = AuthContext.Consumer;
 
 ReactDOM.render(
   <BrowserRouter basename={process.env.PUBLIC_URL}>

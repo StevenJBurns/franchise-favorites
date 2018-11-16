@@ -13,6 +13,13 @@
   margin: 4px
 }
 
+#form-sign-in section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
 #form-sign-in button {
   margin: 4px auto;
   width: 128px;

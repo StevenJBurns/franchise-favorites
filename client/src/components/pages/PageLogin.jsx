@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./PageSignIn.css";
+import "./PageLogin.css";
 
 
 const PageLogin = () => {
@@ -13,8 +13,10 @@ const PageLogin = () => {
         <input type="password" id="input-password"/>
         <button type="submit">SUBMIT</button>
         <hr></hr>
-        <button type="submit">FACEBOOK</button>
-        <button type="submit">TWITTER</button>
+        <section>
+          <button type="submit">FACEBOOK</button>
+          <button type="submit">TWITTER</button>
+        </section>
       </form>
     </main>
   );

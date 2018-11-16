@@ -1,6 +1,6 @@
 /* React Imports */
 import React from "react";
-import { AuthConsumer } from "../../index.js";
+import { AuthContext } from "../../index.js";
 
 /* Local Dependency Imports */
 import Authentication from "../ui/Authentication.jsx";
@@ -21,9 +21,7 @@ const AppHeader = (props) => {
         <FontAwesomeIcon icon={ faStar } size="2x" color="darkOrange" spin />
       </span>
       <h2>FRANCHISE FAVORITES</h2>
-      <AuthConsumer>
-        { val => <Authentication className="section-auth" userEmail={val.userEmail} isAuthenticated={val.isAuthenticated} logout={val.logout} /> }
-      </AuthConsumer>
+      <Authentication className="section-auth" />
     </header>
   );
 };

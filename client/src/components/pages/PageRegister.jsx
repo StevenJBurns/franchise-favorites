@@ -1,6 +1,7 @@
 import React from "react";
+import { AuthContext } from "../../index.js";
 
-import "./PageSignUp.css";
+import "./PageRegister.css";
 
 
 class PageRegister extends React.Component {
@@ -50,19 +51,21 @@ class PageRegister extends React.Component {
 
   render() {
     return (
-      <main>
-        <form id="form-sign-up">
-          {/* <label htmlFor="input-first-name">First Name</label>
-          <input type="text" id="input-first-name"/>
-          <label htmlFor="input-last-name">Last Name</label>
-          <input type="text" id="input-last-name"/> */}
-          <label htmlFor="input-email">email</label>
-          <input type="email" id="input-email" onChange={this.handleInputChange} />
-          <label htmlFor="input-password">password</label>
-          <input type="password" id="input-password" onChange={this.handleInputChange} />
-          <button type="submit" onClick={this.handleFormSubmit}>SUBMIT</button>
-        </form>
-      </main>
+      <AuthContext.Consumer>
+        {
+          ({ register }) => (
+            <main>
+              <form id="form-sign-up">
+                <label htmlFor="input-email">email</label>
+                <input type="email" id="input-email" onChange={this.handleInputChange} />
+                <label htmlFor="input-password">password</label>
+                <input type="password" id="input-password" onChange={this.handleInputChange} />
+                <button type="submit" onClick={register}>SUBMIT</button>
+              </form>
+            </main>
+          )
+        }
+      </AuthContext.Consumer>
     );
   };
 };

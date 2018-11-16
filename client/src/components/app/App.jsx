@@ -7,7 +7,7 @@ import AppNav from "./AppNav.jsx";
 import AppFooter from "./AppFooter.jsx";
 
 /* Context API Imports */
-import { AuthProvider } from "../../index.js";
+import { AuthContext } from "../../index.js";
 
 /* Style and Asset Imports */
 import '../../styles/App.css';
@@ -18,11 +18,34 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userEmail: "",
+      userEmail: "stevenjburns",
       isAuthenticated: true,
       isAuthorized: false,
     }
   }
+
+  login = (e) => {
+
+  };
+
+  register = (e) => {
+    e.preventDefault();
+    
+    let requestBody = {
+      "email": this.state.email,
+      "password": this.state.password
+    };
+
+    fetch("/api/register", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(requestBody)
+    })
+    .then((res) => console.log(res));
+  };
 
   logout = (e) => this.setState({isAuthenticated: false});
 
@@ -30,14 +53,14 @@ class App extends React.Component {
     const { userEmail, isAuthenticated, } = this.state;
 
     return (
-      <AuthProvider value={{ userEmail, isAuthenticated, logout: this.logout}} >
+      <AuthContext.Provider value={{ userEmail, isAuthenticated, register: this.register, logout: this.logout}} >
         <React.Fragment>
           <AppHeader />
           <AppNav />
           <AppMain />
           <AppFooter />
         </React.Fragment>
-      </AuthProvider>
+      </AuthContext.Provider>
     );
   };
 };

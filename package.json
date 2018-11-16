@@ -1,7 +1,7 @@
 {
   "name": "franchise-favorites",
   "author": "Steven J Burns",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "license": "ISC",
   "main": "server.js",
   "scripts": {

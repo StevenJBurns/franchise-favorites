@@ -1,5 +1,8 @@
+/* React Imports */
 import React from "react";
+import { AuthConsumer } from "../../index.js";
 
+/* Local Dependency Imports */
 import Authentication from "../ui/Authentication.jsx";
 
 /* Font Awesome! */
@@ -18,7 +21,9 @@ const AppHeader = (props) => {
         <FontAwesomeIcon icon={ faStar } size="2x" color="darkOrange" spin />
       </span>
       <h2>FRANCHISE FAVORITES</h2>
-      <Authentication className="section-auth" />
+      <AuthConsumer>
+        { val => <Authentication className="section-auth" userEmail={val.userEmail} isAuthenticated={val.isAuthenticated} logout={val.logout} /> }
+      </AuthConsumer>
     </header>
   );
 };

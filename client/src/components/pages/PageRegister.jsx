@@ -3,7 +3,7 @@ import React from "react";
 import "./PageSignUp.css";
 
 
-class PageSignUp extends React.Component {
+class PageRegister extends React.Component {
   constructor(props) {
     super(props);
 
@@ -67,4 +67,4 @@ class PageSignUp extends React.Component {
   };
 };
 
-export default PageSignUp;
+export default PageRegister;

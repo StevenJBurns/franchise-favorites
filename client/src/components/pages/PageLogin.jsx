@@ -3,7 +3,7 @@ import React from "react";
 import "./PageSignIn.css";
 
 
-const PageSignIn = () => {
+const PageLogin = () => {
   return (
     <main>
       <form id="form-sign-in">
@@ -20,4 +20,4 @@ const PageSignIn = () => {
   );
 };
 
-export default PageSignIn;
+export default PageLogin;

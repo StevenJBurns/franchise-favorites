@@ -1,4 +1,4 @@
-#form-sign-up {
+#form-register {
   display: flex;
   flex-direction: column;
   padding: 16px;
@@ -9,11 +9,11 @@
   color: #F0F0F0
 }
 
-#form-sign-up * {
+#form-register * {
   margin: 4px
 }
 
-#form-sign-up button {
+#form-register button {
   margin: 4px auto;
   width: 128px;
   height: 36px;

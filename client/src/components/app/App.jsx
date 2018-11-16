@@ -25,18 +25,33 @@ class App extends React.Component {
   }
 
   login = (e) => {
-
-  };
-
-  register = (e) => {
     e.preventDefault();
-    
+
     let requestBody = {
       "email": this.state.email,
       "password": this.state.password
     };
 
-    fetch("/api/register", {
+    fetch("/auth/login", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(requestBody)
+    })
+    .then((res) => console.log(res));
+  };
+
+  register = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    let requestBody = {
+      "email": this.state.email,
+      "password": this.state.password
+    };
+
+    fetch("/auth/register", {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
@@ -53,7 +68,7 @@ class App extends React.Component {
     const { userEmail, isAuthenticated, } = this.state;
 
     return (
-      <AuthContext.Provider value={{ userEmail, isAuthenticated, register: this.register, logout: this.logout}} >
+      <AuthContext.Provider value={{ userEmail, isAuthenticated, login: this.login, register: this.register, logout: this.logout}} >
         <React.Fragment>
           <AppHeader />
           <AppNav />

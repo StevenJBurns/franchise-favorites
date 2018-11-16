@@ -12,12 +12,9 @@ class PageRegister extends React.Component {
       email: "",
       password: ""
     }
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
   
-  handleInputChange(e) {
+  handleInputChange = (e) => {
     switch (e.target.type) {
       case "email":
         this.setState({"email": e.target.value});
@@ -28,25 +25,7 @@ class PageRegister extends React.Component {
       default:
         break;
     }
-  }
-
-  handleFormSubmit(e) {
-    e.preventDefault();
-    
-    let requestBody = {
-      "email": this.state.email,
-      "password": this.state.password
-    };
-
-    fetch("/api/register", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify(requestBody)
-    })
-    .then((res) => console.log(res));
+    console.log(e.target.value);
   }
 
   render() {
@@ -55,12 +34,12 @@ class PageRegister extends React.Component {
         {
           ({ register }) => (
             <main>
-              <form id="form-sign-up">
+              <form id="form-register" onSubmit={register}>
                 <label htmlFor="input-email">email</label>
-                <input type="email" id="input-email" onChange={this.handleInputChange} />
+                <input type="email" id="input-email" name="email" onChange={this.handleInputChange} />
                 <label htmlFor="input-password">password</label>
-                <input type="password" id="input-password" onChange={this.handleInputChange} />
-                <button type="submit" onClick={register}>SUBMIT</button>
+                <input type="password" id="input-password" name="password" onChange={this.handleInputChange} />
+                <input type="submit" value="SUBMIT" />
               </form>
             </main>
           )

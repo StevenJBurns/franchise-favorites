@@ -19,3 +19,8 @@
   width: 4em;
   display: inline-block
 }
+
+.section-auth {
+  margin: 0 auto;
+  display: inline-block
+}

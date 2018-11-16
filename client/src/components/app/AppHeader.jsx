@@ -1,5 +1,7 @@
 import React from "react";
 
+import Authentication from "../ui/Authentication.jsx";
+
 /* Font Awesome! */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilm, faStar } from '@fortawesome/free-solid-svg-icons';
@@ -16,6 +18,7 @@ const AppHeader = (props) => {
         <FontAwesomeIcon icon={ faStar } size="2x" color="darkOrange" spin />
       </span>
       <h2>FRANCHISE FAVORITES</h2>
+      <Authentication className="section-auth" />
     </header>
   );
 };

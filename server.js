@@ -9,7 +9,8 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 
 /* Local Dependencies */
-let routerAPI = require("./routerAPI.js");
+let routerAPI = require("./routers/routerAPI.js");
+let routerAuth = require("./routers/routerAuth.js");
 
 /* Connect .env file values to Node process.env */
 require("dotenv").config();
@@ -35,10 +36,12 @@ server.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 /* Routing Middleware to catch the index.html request and serve up the React client */
 server.use("/", express.static(path.join(__dirname, "client", "build")));
 
+/* Routing Middleware to catch requests for static assets */
 server.use("/public", express.static(path.join(__dirname, "public")));
 
-/* Router to catch /api only routes */
+/* Routers to catch /auth and /api routes */
 server.use("/api", routerAPI);
+server.use("/auth", routerAuth);
 
 /* Catch all middleware routing that serves up React client for non-API URLs vs a 404 error */
 server.get("*", (req, res) => res.sendFile(path.join(__dirname, "client", "build", "index.html")));

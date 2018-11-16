@@ -1,6 +1,5 @@
 /* React Imports */
 import React from "react";
-import { AuthContext } from "../../index.js";
 
 /* Local Dependency Imports */
 import Authentication from "../ui/Authentication.jsx";

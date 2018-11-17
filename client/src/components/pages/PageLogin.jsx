@@ -9,21 +9,50 @@ class PageLogin extends React.Component {
     super(props);
 
     this.state = {
-
+      email: null,
+      password: null
     };
   };
-  
+  static contextType = AuthContext;
+
+  handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let requestBody = {
+      "email": this.state.email,
+      "password": this.state.password
+    };
+
+    let user = await fetch("/auth/login", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(requestBody)
+    })
+
+    user = await user.json();
+    console.log(user);
+  };
+
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <AuthContext.Consumer>
         {
-          ({ login }) => (
+          ({ updateUser }) => (
             <main>
-              <form id="form-login" on onSubmit={login}>
-                <label htmlFor="input-email">email</label>
-                <input type="email" id="input-email"/>
-                <label htmlFor="input-password">password</label>
-                <input type="password" id="input-password"/>
+              <form id="form-login" onSubmit={this.handleSubmit}>
+                <label htmlFor="email">email</label>
+                <input type="email" id="input-email" name="email" onChange={this.handleChange} />
+                <label htmlFor="password">password</label>
+                <input type="password" id="input-password" name="password" onChange={this.handleChange} />
                 <input type="submit" value="SUBMIT" />
                 <hr></hr>
                 <section>
@@ -38,5 +67,7 @@ class PageLogin extends React.Component {
     );
   };
 };
+
+PageLogin.contextType = AuthContext;
 
 export default PageLogin;

@@ -17,8 +17,8 @@ const Authentication = () => {
         return (
           <section>
             <ul>
-              <li style={hidden}><NavLink to="/auth/login" exact>LOGIN</NavLink></li>
-              <li style={hidden}><NavLink to="/auth/register" exact>REGISTER</NavLink></li>
+              <li style={hidden}><NavLink to="/login" exact>LOGIN</NavLink></li>
+              <li style={hidden}><NavLink to="/register" exact>REGISTER</NavLink></li>
               <li style={visible} onClick={logout}><NavLink to="/" exact>LOGOUT</NavLink></li>
             </ul>
             { status }

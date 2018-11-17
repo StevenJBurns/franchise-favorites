@@ -18,30 +18,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userEmail: "stevenjburns",
-      isAuthenticated: true,
-      isAuthorized: false,
+      currentUser: {
+        userEmail: "stevenjburns",
+        isAuthenticated: true,
+        isAuthorized: false
+      }
     }
   }
 
-  login = (e) => {
-    e.preventDefault();
-
-    let requestBody = {
-      "email": this.state.email,
-      "password": this.state.password
-    };
-
-    fetch("/auth/login", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify(requestBody)
-    })
-    .then((res) => console.log(res));
-  };
+  updateUser = (user) => {
+    console.log("updateUser function!");
+  }
 
   register = (e) => {
     e.preventDefault();
@@ -65,10 +52,8 @@ class App extends React.Component {
   logout = (e) => this.setState({isAuthenticated: false});
 
   render() {
-    const { userEmail, isAuthenticated, } = this.state;
-
     return (
-      <AuthContext.Provider value={{ userEmail, isAuthenticated, login: this.login, register: this.register, logout: this.logout}} >
+      <AuthContext.Provider value={{ currentUser: this.state.currentUser, updateUser: this.updateUser }} >
         <React.Fragment>
           <AppHeader />
           <AppNav />

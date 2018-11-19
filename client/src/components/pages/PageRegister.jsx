@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { AuthContext } from "../app/App.jsx";
 
 import "./PageRegister.css";
@@ -11,7 +12,9 @@ class PageRegister extends React.Component {
     this.state = {
       email: "",
       password: "",
-      error: false
+      isFormValid: false,
+      fetchError: false,
+      redirectToLogin: false
     }
   }
   
@@ -31,7 +34,7 @@ class PageRegister extends React.Component {
   handleSubmit = async (e) => {
     /* Catch the default form POST because this is React; reset error state */
     e.preventDefault();
-    this.setState({ error: false });
+    this.setState({ fetchError: false });
 
     let requestBody = {
       "email": this.state.email,
@@ -51,16 +54,24 @@ class PageRegister extends React.Component {
       if (!user.ok) throw new Error(user.statusText);
 
       user = await user.json();
+      this.setState({ redirectToLogin: true });
 
     } catch (error) {
       console.error(error);
-      this.setState({ error: true });
+      this.setState({ fetchError: true });
     };
 
-    // do something with returned user 
+    // do something with returned user
+
   };
 
+  validateForm = () => {
+
+  }
+
   render() {
+    if (this.state.redirectToLogin) return <Redirect to="/login" />
+
     return (
       <AuthContext.Consumer>
         {
@@ -68,10 +79,10 @@ class PageRegister extends React.Component {
             <main>
               <form id="form-register" onSubmit={this.handleSubmit}>
                 <label htmlFor="input-email">email</label>
-                { this.state.error && <h5>That email is already used</h5> }
-                <input type="email" id="input-email" name="email" onChange={this.handleInputChange} />
+                { this.state.fetchError && <h5>That email is already used</h5> }
+                <input type="email" id="input-email" name="email" onChange={this.handleInputChange} required />
                 <label htmlFor="input-password">password</label>
-                <input type="password" id="input-password" name="password" onChange={this.handleInputChange} />
+                <input type="password" id="input-password" name="password" onChange={this.handleInputChange} required />
                 <input type="submit" value="SUBMIT" />
               </form>
             </main>

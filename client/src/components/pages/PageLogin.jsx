@@ -18,6 +18,7 @@ class PageLogin extends React.Component {
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = async (e) => {
+    /* Catch the default form POST because this is React; reset error state */
     e.preventDefault();
 
     let requestBody = {
@@ -25,17 +26,25 @@ class PageLogin extends React.Component {
       "password": this.state.password
     };
 
-    let user = await fetch("/auth/login", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify(requestBody)
-    })
+    try {
+      let user = await fetch("/auth/login", {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        body: JSON.stringify(requestBody)
+      })
+  
+      if (!user.ok) throw new Error(user.statusText);
 
-    user = await user.json();
-    console.log(user);
+      user = await user.json();
+      console.log(user);
+      
+    } catch (error) {
+      console.error(error);
+      this.setState({ fetchError: true });
+    }
   };
 
   componentDidMount() {
@@ -50,9 +59,9 @@ class PageLogin extends React.Component {
             <main>
               <form id="form-login" onSubmit={this.handleSubmit}>
                 <label htmlFor="email">email</label>
-                <input type="email" id="input-email" name="email" onChange={this.handleChange} />
+                <input type="email" id="input-email" name="email" onChange={this.handleChange} required />
                 <label htmlFor="password">password</label>
-                <input type="password" id="input-password" name="password" onChange={this.handleChange} />
+                <input type="password" id="input-password" name="password" onChange={this.handleChange} required />
                 <input type="submit" value="SUBMIT" />
                 <hr></hr>
                 <section>

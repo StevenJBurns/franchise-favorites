@@ -7,10 +7,15 @@ const userAccountModel = require("../models/userAccountModel.js");
 
 
 routerAuth.post("/login", (req, res) => {
-  console.log("body: ", req.body);
+  // console.log("body: ", req.body);
   const { email, password } = req.body;
+
+  userAccountModel.findOne({ email }, (err, user) => {
+    return user ? res.status(201).json({ "user found": email }) : res.status(400).send("email not found");
+  })
+
   console.log("login: ", email, password);
-  res.status(201).send({ email, password });
+  //res.status(201).send({ email, password });
 });
 
 routerAuth.post("/register", (req, res) => {

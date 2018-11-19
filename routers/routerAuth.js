@@ -16,16 +16,20 @@ routerAuth.post("/login", (req, res) => {
 routerAuth.post("/register", (req, res) => {
   const { email, password } = req.body;
 
-  let newUser = new userAccountModel({
-    "email": email,
-    "password": password
+  userAccountModel.findOne({ email }, (err, user) => {
+    /* Check if the new email already exists on mLab */
+    if (user) return res.status(400).json({ "error": 'That user already exisits!' });
+
+    /* create a new user based on the body and model and save to mLab */
+    let newUser = new userAccountModel({
+      "email": email,
+      "password": password
+    });
+  
+    newUser.save()
+      .then(user => res.status(201).json({"email": user["email"], "favorites": user["favorites"]}))
+      .catch(error => console.error(error));
   });
-
-  console.log(newUser);
-
-  newUser.save()
-    .then(user => res.json({"email": user["email"], "favorites": user["favorites"]}))
-    .catch(error => console.error(error));
   }
 );
 

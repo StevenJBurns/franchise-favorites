@@ -28,13 +28,34 @@ class PageRegister extends React.Component {
     console.log(e.target.value);
   }
 
+  handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let requestBody = {
+      "email": this.state.email,
+      "password": this.state.password
+    };
+
+    let user = await fetch("/auth/register", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(requestBody)
+    })
+
+    user = await user.json();
+    console.log(user);
+  };
+
   render() {
     return (
       <AuthContext.Consumer>
         {
           ({ register }) => (
             <main>
-              <form id="form-register" onSubmit={register}>
+              <form id="form-register" onSubmit={this.handleSubmit}>
                 <label htmlFor="input-email">email</label>
                 <input type="email" id="input-email" name="email" onChange={this.handleInputChange} />
                 <label htmlFor="input-password">password</label>

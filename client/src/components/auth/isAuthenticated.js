@@ -1,5 +1,5 @@
 const isAuthenticated = () => {
-  return false;
+  return true;
 }
 
 export default isAuthenticated;

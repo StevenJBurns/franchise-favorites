@@ -8,22 +8,23 @@ import PageFranchises from "../pages/PageFranchises";
 import PageFavorites from "../pages/PageFavorites";
 import Page404 from "../pages/Page404";
 
+import AuthContext from "./App.jsx";
 import ProtectedRoute from "../auth/ProtectedRoute.jsx";
 
 
 const AppMain = () => {
   return (
-    <React.Fragment>
-      <Switch>
-        <Route exact path="/" component={PageHome} />
-        <Route exact path="/login" component={PageLogin} />
-        <Route exact path="/register" component={PageRegister} />
-        <Route exact path="/franchises" component={PageFranchises} />
-        <ProtectedRoute path="/favorites" component={PageFavorites} />
-        {/* <Route exact path="/favorites" component={PageFavorites} /> */}
-        <Route component={Page404} />
-      </Switch>
-    </React.Fragment>
+      <React.Fragment>
+        <Switch>
+          <Route exact path="/" component={PageHome} />
+          <Route exact path="/login" component={PageLogin} />
+          <Route exact path="/register" component={PageRegister} />
+          <Route exact path="/franchises" component={PageFranchises} />
+          <ProtectedRoute path="/favorites" component={PageFavorites} />
+          {/* <Route exact path="/favorites" component={PageFavorites} /> */}
+          <Route component={Page404} />
+        </Switch>
+      </React.Fragment>
   );
 };
 

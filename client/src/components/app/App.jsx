@@ -6,12 +6,12 @@ import AppMain from "./AppMain.jsx";
 import AppNav from "./AppNav.jsx";
 import AppFooter from "./AppFooter.jsx";
 
-/* Context API Imports */
-import { AuthContext } from "../../index.js";
-
 /* Style and Asset Imports */
 import '../../styles/App.css';
 import './AppComponents.css';
+
+/* Context API Export */
+export const AuthContext = React.createContext({});
 
 
 class App extends React.Component {
@@ -53,14 +53,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <AuthContext.Provider value={{ currentUser: this.state.currentUser, updateUser: this.updateUser }} >
-        <React.Fragment>
+      <React.Fragment>
+        <AuthContext.Provider value={{ currentUser: this.state.currentUser, updateUser: this.updateUser }} >
           <AppHeader />
           <AppNav />
           <AppMain />
           <AppFooter />
-        </React.Fragment>
-      </AuthContext.Provider>
+        </AuthContext.Provider>
+      </React.Fragment>
     );
   };
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthContext } from "../../index.js";
+import { AuthContext } from "../app/App.jsx";
 
 import "./PageLogin.css";
 

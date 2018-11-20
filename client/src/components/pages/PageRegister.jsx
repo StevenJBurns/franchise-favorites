@@ -60,9 +60,7 @@ class PageRegister extends React.Component {
       console.error(error);
       this.setState({ fetchError: true });
     };
-
-    // do something with returned user
-
+    // do something with returned user ?
   };
 
   validateForm = () => {

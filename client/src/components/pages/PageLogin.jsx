@@ -40,16 +40,12 @@ class PageLogin extends React.Component {
 
       user = await user.json();
       console.log(user);
-      
+
     } catch (error) {
       console.error(error);
       this.setState({ fetchError: true });
     }
   };
-
-  componentDidMount() {
-
-  }
 
   render() {
     return (

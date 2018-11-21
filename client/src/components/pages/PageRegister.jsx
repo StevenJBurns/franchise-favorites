@@ -76,6 +76,8 @@ class PageRegister extends React.Component {
           ({ register }) => (
             <main>
               <form id="form-register" onSubmit={this.handleSubmit}>
+                <h3>REGISTER</h3>
+                <hr></hr>
                 <label htmlFor="input-email">email</label>
                 { this.state.fetchError && <h5>That email is already used</h5> }
                 <input type="email" id="input-email" name="email" onChange={this.handleInputChange} required />

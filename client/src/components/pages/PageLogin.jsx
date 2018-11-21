@@ -54,6 +54,8 @@ class PageLogin extends React.Component {
           ({ updateUser }) => (
             <main>
               <form id="form-login" onSubmit={this.handleSubmit}>
+                <h3>LOGIN</h3>
+                <hr></hr>
                 <label htmlFor="email">email</label>
                 <input type="email" id="input-email" name="email" onChange={this.handleChange} required />
                 <label htmlFor="password">password</label>

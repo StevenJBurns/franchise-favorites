@@ -8,30 +8,7 @@ const userAccountModel = require("../models/userAccountModel.js");
 const SALT = 10;
 
 
-routerAuth.post("/login", (req, res) => {
-  const { email, password } = req.body;
-
-  userAccountModel.findOne({ email }, (err, user) => {
-    /* Send 500 error back if Mongo/Mongoose don't play nicely */
-    if (err) res.status(500).send("500: Server Error");
-
-    if (!user) res.status(400).send("400: email not found");
-    
-    //let hash = bcryptjs.hash(password, 10);
-
-    console.log("incoming:", hash, "db:", user["password"]);
-    console.log(bcryptjs.compare(hash, user["password"]));
-
-    if (bcryptjs.compare(hash, user["password"])) {
-      res.status(200).json({ "200: user found": user });
-    } else {
-      res.status(400).json({ "400: bad password": "" });
-    }
-  });
-
-});
-
-routerAuth.post("/register", async (req, res) => {
+routerAuth.post("/register", async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) res.status(400).json({"400": "email and password are required"});
@@ -56,7 +33,9 @@ routerAuth.post("/register", async (req, res) => {
   let newUser;
 
   try {
-    let hashedPassword = await bcryptjs.hash(password, SALT);
+    let hashedPassword = await new Promise((resolve, reject) => {
+      bcryptjs.hash(password, SALT, (err, hash) => err ? reject(err) : resolve(hash));
+    });
     
     newUser = new userAccountModel({
       "userEmail": email,
@@ -70,7 +49,41 @@ routerAuth.post("/register", async (req, res) => {
     console.error(err);
     res.status(500).json({"500": "Server Error"});
   }
+});
 
-  });
+routerAuth.post("/login", async (req, res, next) => {
+  const { email, password } = req.body;
+
+  let user;
+
+  try {
+    user = await userAccountModel.findOne({ userEmail: email }, (err, u) => {
+      /* Send 500 error back if Mongo/Mongoose don't play nicely */
+      if (err) res.status(500).send("500: Server Error");
+      
+      if (!u) throw new Error("400: email not found");
+    });
+  } catch (err) {
+    // console.error(err);
+    return res.status(400).send("email not found");
+  }
+
+  try {
+    bcryptjs.compare(password, user["password"], (err, match) => {
+      if (err) return res.status(500).send();
+
+      console.log("match: ", match);
+      
+      if (match) {
+        res.status(200).json({ "200: user found": user["userEmail"] });
+      } else {
+        throw new Error("400: bad password");
+      }
+    });
+  } catch (err) {
+    // console.error(err);
+    return res.status(400).send("400: bad password");
+  }
+});
 
 module.exports = routerAuth;

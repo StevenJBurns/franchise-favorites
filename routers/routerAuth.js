@@ -32,14 +32,14 @@ routerAuth.post("/register", async (req, res, next) => {
 routerAuth.post("/login", async (req, res, next) => {
   const { email, password } = req.body;
 
-  let exisitingUser = await userAccountModel.findOne({ userEmail: email });
+  let exisitingUser = await UserAccount.findOne({ userEmail: email });
     
   if (!exisitingUser) return res.status(400).json({ "error": "email not found"});
 
-  let passwordsMatch = await bcryptjs.compare(password, user["password"]);
+  let passwordsMatch = await bcryptjs.compare(password, exisitingUser["password"]);
   
   return passwordsMatch ?
-    res.status(200).json({ "message": `user found": ${user["userEmail"]}` }) :
+    res.status(200).json({ "message": `user found": ${exisitingUser["userEmail"]}` }) :
     res.status(400).json({ "message": "bad password" });
 });
 

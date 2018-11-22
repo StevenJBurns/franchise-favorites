@@ -12,6 +12,7 @@ const logger = require("morgan");
 let routerAPI = require("./routers/routerAPI.js");
 let routerAuth = require("./routers/routerAuth.js");
 
+
 /* Connect .env file values to Node process.env */
 require("dotenv").config();
 
@@ -43,8 +44,14 @@ server.use("/public", express.static(path.join(__dirname, "public")));
 server.use("/api", routerAPI);
 server.use("/auth", routerAuth);
 
-/* Catch all middleware routing that serves up React client for non-API URLs vs a 404 error */
+/* Catch-All middleware routing that serves up React client for non-API URLs vs a 404 error */
 server.get("*", (req, res) => res.sendFile(path.join(__dirname, "client", "build", "index.html")));
+
+/* Final Express error handler */
+server.use((err, req, res, next) => {
+  console.log("catch-all: ", err);
+  res.json({err});
+});
 
 /* Start the Express server */ 
 server.listen(process.env.PORT || 8000, () =>

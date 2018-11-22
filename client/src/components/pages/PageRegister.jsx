@@ -41,26 +41,27 @@ class PageRegister extends React.Component {
       "password": this.state.password
     };
 
-    try {
-      let user = await fetch("/auth/register", {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: { "Content-Type": "application/json; charset=utf-8" },
-        body: JSON.stringify(requestBody)
-      });
-      
-      if (!user.ok) throw new Error(user.statusText);
-
-      user = await user.json();
+    await fetch("/auth/register", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(requestBody)
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(res.json()["error"]);
+      return res.json();
+    })
+    .then(obj => {
+      console.log(obj)
       this.setState({ redirectToLogin: true });
-
-    } catch (error) {
-      console.error(error);
+      return obj;
+    })
+    .catch(err => {
       this.setState({ fetchError: true });
-    };
-    // do something with returned user ?
+      console.error(err);
+    });
   };
 
   validateForm = () => {

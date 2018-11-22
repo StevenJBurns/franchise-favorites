@@ -41,16 +41,17 @@ server.use("/", express.static(path.join(__dirname, "client", "build")));
 server.use("/public", express.static(path.join(__dirname, "public")));
 
 /* Routers to catch /auth and /api routes */
-server.use("/api", routerAPI);
 server.use("/auth", routerAuth);
+server.use("/api", routerAPI);
 
 /* Catch-All middleware routing that serves up React client for non-API URLs vs a 404 error */
 server.get("*", (req, res) => res.sendFile(path.join(__dirname, "client", "build", "index.html")));
 
-/* Final Express error handler */
+/* Express catch-all error handler */
 server.use((err, req, res, next) => {
   console.log("catch-all: ", err);
-  res.json({err});
+  console.log("headers sent: ", res.headersSent);
+  res.json({"error": err});
 });
 
 /* Start the Express server */ 

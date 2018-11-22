@@ -2,53 +2,35 @@
 const routerAuth = require("express").Router();
 
 /* */
-const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
-const userAccountModel = require("../models/userAccountModel.js");
+const UserAccount = require("../models/userAccountModel.js");
 const SALT = 10;
 
 
 routerAuth.post("/register", async (req, res, next) => {
   const { email, password } = req.body;
+    
+  if (!email || !password) throw new Error("email and password are required");
 
-  if (!email || !password) res.status(400).json({"400": "email and password are required"});
+  let exisitngUser = await UserAccount.findOne({ "userEmail": email });
 
-  try {
-    let user = await userAccountModel.findOne({ userEmail: email }, (err, user) => {
-      /* Send 500 error back if Mongo/Mongoose don't play nicely */
-      if (err) res.status(500).json({"500": "Server Error"});
-    });
+  /* Send 400 error back if the email already exists on mLab */
+  if (exisitngUser) return res.status(400).send("That user already exists");
+
+  /* hash the password and create a new user with req.body.email and the hashed password */
+  let hashedPassword = await bcryptjs.hash(password, SALT); 
+
+  let newUser = new UserAccount({
+    "userEmail": email,
+    "password": hashedPassword
+  });
+
+  /* assuming hashing finished correctly, save newUser to mLab via Mongoose */ 
+  let savedUser = await newUser.save();
   
-    console.log(user);
-    
-    /* Send 400 error back if the email already exists on mLab */
-    if (user) throw new Error("That user already exists");
-  } catch (err) {
-    console.error(err);
-    return res.status(400).json({"400": "That user already exists"});
-    //res.status(500).json({"500": "Server Error"});
-  }
-
-  /* create a new user based on req.body and hash the password then save to mLab */
-  let newUser;
-
-  try {
-    let hashedPassword = await new Promise((resolve, reject) => {
-      bcryptjs.hash(password, SALT, (err, hash) => err ? reject(err) : resolve(hash));
-    });
-    
-    newUser = new userAccountModel({
-      "userEmail": email,
-      "password": hashedPassword
-    });
-
-    await newUser.save();
-
-    res.status(201).json({"userEmail": newUser["email"], "favorites": newUser["favorites"]})  
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({"500": "Server Error"});
-  }
+  /* Fire off a 201 response to the client with the savedUser object minus the password property */
+  delete savedUser["password"];
+  res.status(201).json(savedUser);
 });
 
 routerAuth.post("/login", async (req, res, next) => {

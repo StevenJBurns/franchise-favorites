@@ -5,10 +5,12 @@ const path = require("path");
 const chalk = require("chalk");
 const express = require("express");
 const favicon = require("serve-favicon");
+const expressJWT = require("express-jwt");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 
 /* Local Dependencies */
+/* Two distinct Express Router objects for /auth and /api */
 let routerAPI = require("./routers/routerAPI.js");
 let routerAuth = require("./routers/routerAuth.js");
 
@@ -33,6 +35,11 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 
 /* serve-favicon Middleware */
 server.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+
+/* JWT Middleware */
+// server.use("/", expressJWT({ secret: process.env.SECRET_KEY}), (req, res, next) => {
+//   res.status(200).send("You are authenticated");
+// });
 
 /* Routing Middleware to catch the index.html request and serve up the React client */
 server.use("/", express.static(path.join(__dirname, "client", "build")));

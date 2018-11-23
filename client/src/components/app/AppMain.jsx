@@ -8,7 +8,7 @@ import PageFranchises from "../pages/PageFranchises";
 import PageFavorites from "../pages/PageFavorites";
 import Page404 from "../pages/Page404";
 
-import ProtectedRoute from "../auth/ProtectedRoute.jsx";
+import ProtectedRoute from "../routes/ProtectedRoute.jsx";
 
 
 const AppMain = () => {
@@ -20,7 +20,6 @@ const AppMain = () => {
           <Route exact path="/register" component={PageRegister} />
           <Route exact path="/franchises" component={PageFranchises} />
           <ProtectedRoute path="/favorites" component={PageFavorites} />
-          {/* <Route exact path="/favorites" component={PageFavorites} /> */}
           <Route component={Page404} />
         </Switch>
       </React.Fragment>

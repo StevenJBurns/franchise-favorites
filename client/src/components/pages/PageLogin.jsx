@@ -1,6 +1,6 @@
 import React from "react";
-import { AuthContext } from "../app/App.jsx";
-
+import { CurrentUserContext } from "../app/App.jsx";
+import decodeJWT from "jwt-decode";
 import "./PageLogin.css";
 
 
@@ -13,13 +13,14 @@ class PageLogin extends React.Component {
       password: null
     };
   };
-  static contextType = AuthContext;
+  static contextType = CurrentUserContext;
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   handleSubmit = async (e) => {
     /* Catch the default form POST because this is React; reset error state */
     e.preventDefault();
+    this.setState({fetchError: false})
 
     const headers = {
       'Accept': 'application/json',
@@ -28,7 +29,7 @@ class PageLogin extends React.Component {
     
     if (localStorage.getItem("jwt_token")) {
       headers['Authorization'] = `Bearer ${localStorage.getItem("jwt_token")}`;
-    }
+    };
     
     let requestBody = {
       "email": this.state.email,
@@ -49,8 +50,8 @@ class PageLogin extends React.Component {
       return res.json();
     })
     .then(body => {
-      console.log("body: ", body);
       localStorage.setItem("jwt_token", body.token);
+      console.log(this.isTokenExpired());
     })
     .catch(err => {
       this.setState({ fetchError: true });
@@ -59,16 +60,19 @@ class PageLogin extends React.Component {
   };
 
   isLoggedIn = () => {
-
+    let token = localStorage.getItem("jwt.token");
+    return token && this.isTokenExpired() ? true : false;
   };
 
   isTokenExpired = () => {
-
+    let token = localStorage.getItem("jwt_token");
+    let decodedToken = decodeJWT(token);
+    return decodedToken.exp < Date.now() ? false : true;
   }
 
   render() {
     return (
-      <AuthContext.Consumer>
+      <CurrentUserContext.Consumer>
         {
           ({ updateUser }) => (
             <main>
@@ -79,6 +83,7 @@ class PageLogin extends React.Component {
                 <input type="email" id="input-email" name="email" onChange={this.handleChange} required />
                 <label htmlFor="password">password</label>
                 <input type="password" id="input-password" name="password" onChange={this.handleChange} required />
+                { this.state.fetchError && <h5>BAD PASSWORD</h5> }
                 <input type="submit" value="SUBMIT" />
                 <hr></hr>
                 <section>
@@ -89,11 +94,11 @@ class PageLogin extends React.Component {
             </main>
           )
         }
-      </AuthContext.Consumer>
+      </CurrentUserContext.Consumer>
     );
   };
 };
 
-PageLogin.contextType = AuthContext;
+PageLogin.contextType = CurrentUserContext;
 
 export default PageLogin;

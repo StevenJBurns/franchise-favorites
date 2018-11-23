@@ -12,7 +12,7 @@ import './AppComponents.css';
 
 
 /* Create a Context API object to be used here as Provider and exported for Consumers */
-export const AuthContext = React.createContext({});
+export const CurrentUserContext = React.createContext({});
 
 class App extends React.Component {
   constructor(props) {
@@ -49,17 +49,20 @@ class App extends React.Component {
     .then((res) => console.log(res));
   };
 
-  logout = (e) => this.setState({isAuthenticated: false});
+  logout = (e) => {
+    localStorage.setItem("jwt_token", null);
+    this.setState({isAuthenticated: false});
+  }
 
   render() {
     return (
       <React.Fragment>
-        <AuthContext.Provider value={{ currentUser: this.state.currentUser, updateUser: this.updateUser }} >
-          <AppHeader />
+        <CurrentUserContext.Provider value={{ currentUser: this.state.currentUser, updateUser: this.updateUser }} >
+          <AppHeader logout={this.logout} />
           <AppNav />
           <AppMain />
           <AppFooter />
-        </AuthContext.Provider>
+        </CurrentUserContext.Provider>
       </React.Fragment>
     );
   };

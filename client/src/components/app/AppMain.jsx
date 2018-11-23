@@ -8,7 +8,6 @@ import PageFranchises from "../pages/PageFranchises";
 import PageFavorites from "../pages/PageFavorites";
 import Page404 from "../pages/Page404";
 
-import AuthContext from "./App.jsx";
 import ProtectedRoute from "../auth/ProtectedRoute.jsx";
 
 

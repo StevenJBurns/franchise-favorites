@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { AuthContext } from "../app/App.jsx";
+import { CurrentUserContext } from "../app/App.jsx";
 
 import "./PageRegister.css";
 
@@ -72,7 +72,7 @@ class PageRegister extends React.Component {
     if (this.state.redirectToLogin) return <Redirect to="/login" />
 
     return (
-      <AuthContext.Consumer>
+      <CurrentUserContext.Consumer>
         {
           ({ register }) => (
             <main>
@@ -89,7 +89,7 @@ class PageRegister extends React.Component {
             </main>
           )
         }
-      </AuthContext.Consumer>
+      </CurrentUserContext.Consumer>
     );
   };
 };

@@ -20,7 +20,7 @@ const AppHeader = (props) => {
         <FontAwesomeIcon icon={ faStar } size="2x" color="darkOrange" spin />
       </span>
       <h2>FRANCHISE FAVORITES</h2>
-      <AuthenticationStatus className="section-auth" />
+      <AuthenticationStatus logout={props.logout} className="section-auth" />
     </header>
   );
 };

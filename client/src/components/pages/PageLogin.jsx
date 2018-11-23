@@ -21,31 +21,50 @@ class PageLogin extends React.Component {
     /* Catch the default form POST because this is React; reset error state */
     e.preventDefault();
 
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+    
+    if (localStorage.getItem("jwt_token")) {
+      headers['Authorization'] = `Bearer ${localStorage.getItem("jwt_token")}`;
+    }
+    
     let requestBody = {
       "email": this.state.email,
       "password": this.state.password
     };
 
-    try {
-      let user = await fetch("/auth/login", {
-        method: "POST",
-        mode: "cors",
-        cache: "no-cache",
-        credentials: "same-origin",
-        headers: { "Content-Type": "application/json; charset=utf-8" },
-        body: JSON.stringify(requestBody)
-      })
-  
-      if (!user.ok) throw new Error(user.statusText);
+    await fetch("/auth/login", {
+      method: "POST",
+      mode: "cors",
+      headers: headers,
+      cache: "no-cache",
+      credentials: "same-origin",
+      body: JSON.stringify(requestBody)
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(res.statusText);
 
-      user = await user.json();
-      console.log(user);
-
-    } catch (error) {
-      console.error(error);
+      return res.json();
+    })
+    .then(body => {
+      console.log("body: ", body);
+      localStorage.setItem("jwt_token", body.token);
+    })
+    .catch(err => {
       this.setState({ fetchError: true });
-    }
+      console.error(err);
+    });
   };
+
+  isLoggedIn = () => {
+
+  };
+
+  isTokenExpired = () => {
+
+  }
 
   render() {
     return (

@@ -1,11 +1,16 @@
 /* Create an auth specific router via Exoress */
 const routerAuth = require("express").Router();
 
-/* */
-const bcryptjs = require("bcryptjs");
-const UserAccount = require("../models/userAccountModel.js");
+/* bcrypt and JWT external dependencies */
 const SALT = 10;
+const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
+/* Local Dependencies */
+const UserAccount = require("../models/userAccountModel.js");
+
+
+const SECRET = process.env.SECRET_KEY;
 
 routerAuth.post("/register", async (req, res, next) => {
   const { email, password } = req.body;
@@ -29,7 +34,7 @@ routerAuth.post("/register", async (req, res, next) => {
   res.status(201).json({"message": `created new user: ${userEmail}`});  
 });
 
-routerAuth.post("/login", async (req, res, next) => {
+routerAuth.post("/login", async (req, res, next) => {  
   const { email, password } = req.body;
 
   let exisitingUser = await UserAccount.findOne({ userEmail: email });
@@ -38,9 +43,13 @@ routerAuth.post("/login", async (req, res, next) => {
 
   let passwordsMatch = await bcryptjs.compare(password, exisitingUser["password"]);
   
-  return passwordsMatch ?
-    res.status(200).json({ "message": `user found": ${exisitingUser["userEmail"]}` }) :
-    res.status(400).json({ "message": "bad password" });
+  if (!passwordsMatch) return res.status(403).json({ "message": "bad password" });
+
+  const token = await jwt.sign({ _id: exisitingUser["user._id"] }, process.env.SECRET_KEY, { expiresIn: 60000});
+
+  console.log(token);
+  
+  return res.status(200).send({"token": token});
 });
 
 module.exports = routerAuth;

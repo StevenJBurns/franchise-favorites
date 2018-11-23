@@ -10,9 +10,9 @@ import AppFooter from "./AppFooter.jsx";
 import '../../styles/App.css';
 import './AppComponents.css';
 
-/* Context API Export */
-export const AuthContext = React.createContext({});
 
+/* Create a Context API object to be used here as Provider and exported for Consumers */
+export const AuthContext = React.createContext({});
 
 class App extends React.Component {
   constructor(props) {

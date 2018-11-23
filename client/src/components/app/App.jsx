@@ -19,15 +19,14 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentUser: {
-        userEmail: "stevenjburns",
+        userEmail: "",
         isAuthenticated: true,
-        isAuthorized: false
+        isAuthorized: false,
+        errors: [
+          
+        ]
       }
     }
-  }
-
-  updateUser = (user) => {
-    console.log("updateUser function!");
   }
 
   register = (e) => {
@@ -49,6 +48,44 @@ class App extends React.Component {
     .then((res) => console.log(res));
   };
 
+  login = async (email, password) => {
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    };
+
+    if (localStorage.getItem("jwt_token")) {
+      headers['Authorization'] = `Bearer ${localStorage.getItem("jwt_token")}`;
+    };
+    
+    let requestBody = {
+      "email": this.state.email,
+      "password": this.state.password
+    };
+
+    await fetch("/auth/login", {
+      method: "POST",
+      mode: "cors",
+      headers: headers,
+      cache: "no-cache",
+      credentials: "same-origin",
+      body: JSON.stringify(requestBody)
+    })
+    .then(res => {
+      if (!res.ok) throw new Error(res.statusText);
+
+      return res.json();
+    })
+    .then(body => {
+      localStorage.setItem("jwt_token", body.token);
+      console.log(this.isTokenExpired());
+    })
+    .catch(err => {
+      this.setState({ fetchError: true });
+      console.error(err);
+    });
+  };
+
   logout = (e) => {
     localStorage.setItem("jwt_token", null);
     this.setState({isAuthenticated: false});
@@ -57,8 +94,12 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <CurrentUserContext.Provider value={{ currentUser: this.state.currentUser, updateUser: this.updateUser }} >
-          <AppHeader logout={this.logout} />
+        <CurrentUserContext.Provider value={{
+            state: this.state,
+            register: this.register,
+            login: this.login,
+            logout: this.logout}} >
+          <AppHeader />
           <AppNav />
           <AppMain />
           <AppFooter />

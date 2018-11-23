@@ -2,7 +2,7 @@
 import React from "react";
 
 /* Local Dependency Imports */
-import Authentication from "../ui/Authentication.jsx";
+import AuthenticationStatus from "../ui/AuthenticationStatus.jsx";
 
 /* Font Awesome! */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,7 +20,7 @@ const AppHeader = (props) => {
         <FontAwesomeIcon icon={ faStar } size="2x" color="darkOrange" spin />
       </span>
       <h2>FRANCHISE FAVORITES</h2>
-      <Authentication className="section-auth" />
+      <AuthenticationStatus className="section-auth" />
     </header>
   );
 };

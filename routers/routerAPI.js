@@ -1,18 +1,20 @@
 /* Create a router via Exoress */
 const routerAPI = require("express").Router();
 
-const franchiseModel = require("../models/franchiseModel");
-const userAccountModel = require("../models/userAccountModel");
+const Franchise = require("../models/franchiseModel");
+const UserAccount = require("../models/userAccountModel");
 
 
 routerAPI.get("/franchises", (req, res) => {
-  franchiseModel.find()
-    .then(franchises => res.json(franchises));
+  Franchise.find()
+    .then(franchises => res.json(franchises))
+    .catch(err => console.error(err));
 });
 
 routerAPI.get("/userAccounts", (req, res) => {
-  userAccountModel.find()
-    .then(userAccounts => res.json(userAccounts));
+  UserAccount.find()
+    .then(users => res.json(users))
+    .catch(err => console.error(err));
 });
 
 module.exports = routerAPI;

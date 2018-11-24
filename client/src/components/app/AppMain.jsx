@@ -11,18 +11,18 @@ import Page404 from "../pages/Page404";
 import ProtectedRoute from "../routes/ProtectedRoute.jsx";
 
 
-const AppMain = () => {
+const AppMain = (props) => {
   return (
-      <React.Fragment>
-        <Switch>
-          <Route exact path="/" component={PageHome} />
-          <Route exact path="/login" component={PageLogin} />
-          <Route exact path="/register" component={PageRegister} />
-          <Route exact path="/franchises" component={PageFranchises} />
-          <ProtectedRoute path="/favorites" component={PageFavorites} />
-          <Route component={Page404} />
-        </Switch>
-      </React.Fragment>
+    <React.Fragment>
+      <Switch>
+        <Route exact path="/" component={PageHome} />
+        <Route exact path="/login" render={() => <PageLogin updateUser={props.updateUser} />} />
+        <Route exact path="/register" component={PageRegister} />
+        <Route exact path="/franchises" component={PageFranchises} />
+        <ProtectedRoute path="/favorites" component={PageFavorites} />
+        <Route component={Page404} />
+      </Switch>
+    </React.Fragment>
   );
 };
 

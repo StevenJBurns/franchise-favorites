@@ -17,21 +17,22 @@ export const CurrentUserContext = React.createContext({});
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      currentUser: {
-        userEmail: "",
-        isAuthenticated: true,
-        isAuthorized: false,
-        errors: [
-          
-        ]
-      }
+      userEmail: null,
+      favorites: [],
+      isAuthenticated: true,
+      errors: []
     }
+  }
+
+  updateUser = (email, favorites, authenticated) => {
+    this.setState({ userEmail: email, favorites, isAuthenticated: authenticated });
   }
 
   register = (e) => {
     e.preventDefault();
-    console.log(e.target);
+
     let requestBody = {
       "email": this.state.email,
       "password": this.state.password
@@ -87,21 +88,24 @@ class App extends React.Component {
   };
 
   logout = (e) => {
+    console.log("Logging out");
     localStorage.setItem("jwt_token", null);
-    this.setState({isAuthenticated: false});
+    this.setState({userEmail: null, favorites: [], isAuthenticated: false});
   }
 
   render() {
+    const values = {
+      state: this.state,
+      updateUser: this.updateUser,
+      logout: this.logout
+    };
+
     return (
       <React.Fragment>
-        <CurrentUserContext.Provider value={{
-            state: this.state,
-            register: this.register,
-            login: this.login,
-            logout: this.logout}} >
+        <CurrentUserContext.Provider value={values}>
           <AppHeader />
           <AppNav />
-          <AppMain />
+          <AppMain updateUser={this.updateUser} />
           <AppFooter />
         </CurrentUserContext.Provider>
       </React.Fragment>

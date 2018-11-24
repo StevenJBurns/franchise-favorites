@@ -1,8 +1,9 @@
 /* Create a router via Exoress */
 const routerAPI = require("express").Router();
 
-const Franchise = require("../models/franchiseModel");
-const UserAccount = require("../models/userAccountModel");
+/* Import Mongo data models to use in API routes */
+const Franchise = require("../models/franchiseModel.js");
+const UserAccount = require("../models/userAccountModel.js");
 
 
 routerAPI.get("/franchises", (req, res) => {

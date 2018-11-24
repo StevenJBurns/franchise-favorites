@@ -49,7 +49,7 @@ routerAuth.post("/login", async (req, res, next) => {
 
   console.log(token);
   
-  return res.status(200).send({"token": token});
+  return res.status(200).send({"userEmail": exisitingUser.userEmail, "favorites": exisitingUser.favorites, "token": token});
 });
 
 module.exports = routerAuth;

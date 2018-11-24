@@ -21,7 +21,7 @@ class App extends React.Component {
     this.state = {
       userEmail: null,
       favorites: [],
-      isAuthenticated: true,
+      isAuthenticated: false,
       errors: []
     }
   }

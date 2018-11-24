@@ -15,8 +15,6 @@ const AuthenticationHOC = (Component) => {
       }
     }
 
-
-
     render() {
       return (
         <AuthenticationContext.Provider value={this.state.isAuthenticated}>

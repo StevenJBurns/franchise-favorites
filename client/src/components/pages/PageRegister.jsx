@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { CurrentUserContext } from "../app/App.jsx";
 
 import "./PageRegister.css";
 
@@ -17,7 +16,7 @@ class PageRegister extends React.Component {
       redirectToLogin: false
     }
   }
-  
+
   handleInputChange = (e) => {
     switch (e.target.type) {
       case "email":
@@ -72,24 +71,18 @@ class PageRegister extends React.Component {
     if (this.state.redirectToLogin) return <Redirect to="/login" />
 
     return (
-      <CurrentUserContext.Consumer>
-        {
-          ({ register }) => (
-            <main>
-              <form id="form-register" onSubmit={this.handleSubmit}>
-                <h3>REGISTER</h3>
-                <hr></hr>
-                <label htmlFor="input-email">email</label>
-                { this.state.fetchError && <h5>That email is already used</h5> }
-                <input type="email" id="input-email" name="email" onChange={this.handleInputChange} required />
-                <label htmlFor="input-password">password</label>
-                <input type="password" id="input-password" name="password" onChange={this.handleInputChange} required />
-                <input type="submit" value="SUBMIT" />
-              </form>
-            </main>
-          )
-        }
-      </CurrentUserContext.Consumer>
+      <main>
+        <form id="form-register" onSubmit={this.handleSubmit}>
+          <h3>REGISTER</h3>
+          <hr></hr>
+          <label htmlFor="input-email">email</label>
+          { this.state.fetchError && <h5>That email is already used</h5> }
+          <input type="email" id="input-email" name="email" onChange={this.handleInputChange} required />
+          <label htmlFor="input-password">password</label>
+          <input type="password" id="input-password" name="password" onChange={this.handleInputChange} required />
+          <input type="submit" value="SUBMIT" />
+        </form>
+      </main>
     );
   };
 };

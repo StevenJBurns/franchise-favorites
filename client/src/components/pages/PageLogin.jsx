@@ -7,7 +7,7 @@ import "./PageLogin.css";
 class PageLogin extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+
     this.state = {
       email: null,
       password: null
@@ -51,8 +51,6 @@ class PageLogin extends React.Component {
     })
     .then(body => {
       localStorage.setItem("jwt_token", body.token);
-      console.log(body);
-      console.log(this.isTokenExpired());
       this.props.updateUser(body.userEmail, body.favorites, true);
     })
     .catch(err => {

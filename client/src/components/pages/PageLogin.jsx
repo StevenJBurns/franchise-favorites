@@ -74,29 +74,23 @@ class PageLogin extends React.Component {
 
   render() {
     return (
-      <CurrentUserContext.Consumer>
-        {
-          ({ updateUser }) => (
-            <main>
-              <form id="form-login" onSubmit={this.handleSubmit}>
-                <h3>LOGIN</h3>
-                <hr></hr>
-                <label htmlFor="email">email</label>
-                <input type="email" id="input-email" name="email" onChange={this.handleChange} required />
-                <label htmlFor="password">password</label>
-                <input type="password" id="input-password" name="password" onChange={this.handleChange} required />
-                { this.state.fetchError && <h5>BAD PASSWORD</h5> }
-                <input type="submit" value="SUBMIT" />
-                <hr></hr>
-                <section>
-                  <button type="submit">FACEBOOK</button>
-                  <button type="submit">TWITTER</button>
-                </section>
-              </form>
-            </main>
-          )
-        }
-      </CurrentUserContext.Consumer>
+      <main>
+        <form id="form-login" onSubmit={this.handleSubmit}>
+          <h3>LOGIN</h3>
+          <hr></hr>
+          <label htmlFor="email">email</label>
+          <input type="email" id="input-email" name="email" onChange={this.handleChange} required />
+          <label htmlFor="password">password</label>
+          <input type="password" id="input-password" name="password" onChange={this.handleChange} required />
+          { this.state.fetchError && <h5>BAD PASSWORD</h5> }
+          <input type="submit" value="SUBMIT" />
+          <hr></hr>
+          <section>
+            <button type="submit">FACEBOOK</button>
+            <button type="submit">TWITTER</button>
+          </section>
+        </form>
+      </main>
     );
   };
 };

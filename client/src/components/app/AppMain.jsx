@@ -18,7 +18,7 @@ const AppMain = (props) => {
         <Route exact path="/" component={PageHome} />
         <Route exact path="/login" render={() => <PageLogin updateUser={props.updateUser} />} />
         <Route exact path="/register" component={PageRegister} />
-        <Route exact path="/franchises" component={PageFranchiseList} />
+        <Route path="/franchises" component={PageFranchiseList} />
         <ProtectedRoute path="/favorites" component={PageFavorites} />
         <Route component={Page404} />
       </Switch>

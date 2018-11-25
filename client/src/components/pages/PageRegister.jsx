@@ -12,8 +12,8 @@ class PageRegister extends React.Component {
       email: "",
       password: "",
       isFormValid: false,
-      fetchError: false,
-      redirectToLogin: false
+      redirectToLogin: false,
+      fetchError: false
     }
   }
 

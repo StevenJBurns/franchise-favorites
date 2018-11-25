@@ -10,7 +10,10 @@ class PageLogin extends React.Component {
 
     this.state = {
       email: null,
-      password: null
+      password: null,
+      isFormValid: false,
+      redirectToHome: false,
+      fetchError: false
     };
   };
   static contextType = AppContext;

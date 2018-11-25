@@ -1,6 +1,5 @@
 import React from "react";
-
-import { Flipper, Flipped } from "react-flip-toolkit";
+import { Link } from "react-router-dom";
 
 import FranchiseTile from "../ui/FranchiseTile.jsx";
 
@@ -19,25 +18,29 @@ class PageFranchiseList extends React.Component {
 
   componentDidMount() {
     fetch("/api/franchises")
-      .then(data => data.json())
-      .then(json => this.setState({franchises: json}));
+      .then(res => res.json())
+      .then(data => this.setState({franchises: data}));
   }
 
   render() {
+    const { match } = this.props;
+
     return (
-    <main>
-      <Flipper flipKey={this.state.focusedTile}>
+      <main>
         <section id="section-franchise-tiles">
-          {
-            this.state.franchises.map((item, index) =>
-              (<Flipped flipId={`movie-${index}`} key={`movie-${index}`}>
-                <FranchiseTile key={index} title={item.title} imageURL={item.imageURL} />
-              </Flipped>)
+        {
+          this.state.franchises.map((franchise, index) =>
+            (
+              <div key={index}>
+                <FranchiseTile slug={franchise.slug} title={franchise.title} imageURL={franchise.imageURL}>
+                  <Link to={`${match.url}/${franchise.slug}`}>{franchise.title}</Link>
+                </FranchiseTile>
+              </div>
             )
-          }
+          )
+        }
         </section>
-      </Flipper>
-    </main>
+      </main>
     );
   };
 };

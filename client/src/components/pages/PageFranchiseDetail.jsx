@@ -3,18 +3,12 @@ import React from "react";
 import "./PageFranchiseDetail.css";
 
 
-class PageFranchiseDetail extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <h2>FRANCHISE DETAIL</h2>
-    );
-  };
+const PageFranchiseDetail = (props) => {
+  return (
+    <main>
+      <h2>props.franchise.title</h2>
+    </main>
+  );
 };
 
 export default PageFranchiseDetail;

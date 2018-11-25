@@ -5,6 +5,7 @@ import PageHome from "../pages/PageHome";
 import PageRegister from "../pages/PageRegister";
 import PageLogin from "../pages/PageLogin";
 import PageFranchiseList from "../pages/PageFranchiseList";
+import PageFranchiseDetail from "../pages/PageFranchiseDetail"
 import PageFavorites from "../pages/PageFavorites";
 import Page404 from "../pages/Page404";
 
@@ -18,7 +19,8 @@ const AppMain = (props) => {
         <Route exact path="/" component={PageHome} />
         <Route exact path="/login" render={() => <PageLogin updateUser={props.updateUser} />} />
         <Route exact path="/register" component={PageRegister} />
-        <Route path="/franchises" component={PageFranchiseList} />
+        <Route exact path="/franchises" component={PageFranchiseList} />
+        <Route path="/franchises/:slug" component={PageFranchiseDetail} />
         <ProtectedRoute path="/favorites" component={PageFavorites} />
         <Route component={Page404} />
       </Switch>

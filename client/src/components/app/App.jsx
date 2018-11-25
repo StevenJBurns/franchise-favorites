@@ -12,22 +12,36 @@ import './AppComponents.css';
 
 
 /* Create a Context API object to be used here as Provider and exported for Consumers */
-export const CurrentUserContext = React.createContext({});
+export const AppContext = React.createContext({});
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      userEmail: null,
-      favorites: [],
-      isAuthenticated: false,
+      currentUser: {
+        userEmail: null,
+        isAuthenticated: false,
+        favorites: []
+      },
+      franchises: {
+        list: [],
+        selected: null
+      },
       errors: []
     }
   }
 
-  updateUser = (email, favorites, authenticated) => {
-    this.setState({ userEmail: email, favorites, isAuthenticated: authenticated });
+  async componentDidMount() {
+    /* Grab the franchise list via the server API and save it to this.state */
+    await fetch("/api/franchises")
+      .then(res => res.json())
+      .then(data => this.setState({franchises: {...this.state.franchises, list: data}}));
+  }
+
+  updateUser = (userEmail, favorites, isAuthenticated) => {
+    this.setState({ currentUser: { userEmail, favorites, isAuthenticated }});
   }
 
   register = (e) => {
@@ -95,19 +109,20 @@ class App extends React.Component {
 
   render() {
     const values = {
-      state: this.state,
+      user: this.state.currentUser,
+      franchises: this.state.franchises,
       updateUser: this.updateUser,
       logout: this.logout
     };
 
     return (
       <React.Fragment>
-        <CurrentUserContext.Provider value={values}>
+        <AppContext.Provider value={values}>
           <AppHeader />
           <AppNav />
           <AppMain updateUser={this.updateUser} />
           <AppFooter />
-        </CurrentUserContext.Provider>
+        </AppContext.Provider>
       </React.Fragment>
     );
   };

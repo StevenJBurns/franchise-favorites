@@ -1,5 +1,5 @@
 import React from "react";
-import { CurrentUserContext } from "../app/App.jsx";
+import { AppContext } from "../app/App.jsx";
 import decodeJWT from "jwt-decode";
 import "./PageLogin.css";
 
@@ -13,7 +13,7 @@ class PageLogin extends React.Component {
       password: null
     };
   };
-  static contextType = CurrentUserContext;
+  static contextType = AppContext;
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
@@ -49,9 +49,9 @@ class PageLogin extends React.Component {
 
       return res.json();
     })
-    .then(body => {
-      localStorage.setItem("jwt_token", body.token);
-      this.props.updateUser(body.userEmail, body.favorites, true);
+    .then(data => {
+      localStorage.setItem("jwt_token", data.token);
+      this.props.updateUser(data.userEmail, data.favorites, true);
     })
     .catch(err => {
       this.setState({ fetchError: true });
@@ -93,6 +93,6 @@ class PageLogin extends React.Component {
   };
 };
 
-PageLogin.contextType = CurrentUserContext;
+PageLogin.contextType = AppContext;
 
 export default PageLogin;

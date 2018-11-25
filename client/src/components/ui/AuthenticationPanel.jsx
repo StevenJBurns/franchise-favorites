@@ -1,18 +1,18 @@
 import React from "react";
 import { NavLink } from 'react-router-dom';
-import { CurrentUserContext } from "../app/App.jsx";
+import { AppContext } from "../app/App.jsx";
 
 import "./Authentication.css";
 
 
 const AuthenticationPanel = (props) => {
   return (
-    <CurrentUserContext.Consumer>
+    <AppContext.Consumer>
       {        
-      ({ state, logout }) => {
-        let status = state.isAuthenticated ? <h6 id="h6-logged-in">{state.userEmail}</h6> : <h6 id="h6-not-logged-in">NOT LOGGED IN</h6>
-        let visible = state.isAuthenticated ? {display: "block"} : {display: "none"};
-        let hidden = state.isAuthenticated ? {display: "none"} : {display: "block"};
+      ({ user, logout }) => {
+        let status = user.isAuthenticated ? <h6 id="h6-logged-in">{user.userEmail}</h6> : <h6 id="h6-not-logged-in">NOT LOGGED IN</h6>
+        let visible = user.isAuthenticated ? {display: "block"} : {display: "none"};
+        let hidden = user.isAuthenticated ? {display: "none"} : {display: "block"};
       
         return (
           <section>
@@ -25,7 +25,7 @@ const AuthenticationPanel = (props) => {
           </section>
         )}
       }
-    </CurrentUserContext.Consumer>
+    </AppContext.Consumer>
   );
 };
 

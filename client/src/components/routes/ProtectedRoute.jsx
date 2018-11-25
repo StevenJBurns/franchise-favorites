@@ -3,17 +3,17 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 /* Import the user context component to be used as consumer */ 
-import { CurrentUserContext } from "../app/App.jsx";
+import { AppContext } from "../app/App.jsx";
 
 
 const ProtectedRoute = ({ component: Component, ...rest}) => (
-  <CurrentUserContext.Consumer>
-    { ({state}) => (
+  <AppContext.Consumer>
+    { ({user}) => (
       <Route { ...rest } render={ props => (
-        state.isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
+        user.isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
       )} />)
     }
-  </CurrentUserContext.Consumer>
+  </AppContext.Consumer>
 );
 
 export default ProtectedRoute;

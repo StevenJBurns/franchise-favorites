@@ -4,14 +4,16 @@ import "./FranchiseTile.css";
 
 
 const FranchiseTile = (props) => {
+  const { franchise, changeFranchise } = props;
+  
   const styleBG = {
-    backgroundImage: `url(${props.imageURL})`,
+    backgroundImage: `url(${franchise.imageURL})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "contain"
   };
 
   return (    
-    <article className="article-franchise-tile" style={ styleBG }>
+    <article className="article-franchise-tile" style={ styleBG } onClick={() => changeFranchise(franchise)}>
       {props.children}
     </article>
   );

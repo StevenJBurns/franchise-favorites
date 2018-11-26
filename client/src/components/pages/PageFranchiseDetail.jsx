@@ -1,13 +1,26 @@
 import React from "react";
 
+import { AppContext } from "../app/App.jsx";
+
 import "./PageFranchiseDetail.css";
 
 
 const PageFranchiseDetail = (props) => {
+  const { franchise } = props;
+  console.log(franchise);
+
   return (
-    <main>
-      <h2>props.franchise.title</h2>
-    </main>
+    <AppContext.Consumer>
+      {
+      ({ franchises}) => (
+        franchises.selected && 
+          <main>
+            <h2>{franchises.selected.title}</h2>
+          </main>
+        )
+      }
+    </AppContext.Consumer>
+
   );
 };
 

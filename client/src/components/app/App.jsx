@@ -31,18 +31,14 @@ class App extends React.Component {
       },
       errors: []
     }
-  }
+  };
 
   async componentDidMount() {
     /* Grab the franchise list via the server API and save it to this.state */
     await fetch("/api/franchises")
       .then(res => res.json())
       .then(data => this.setState({franchises: {...this.state.franchises, list: data}}));
-  }
-
-  updateUser = (userEmail, favorites, isAuthenticated) => {
-    this.setState({ currentUser: { userEmail, favorites, isAuthenticated }});
-  }
+  };
 
   register = (e) => {
     e.preventDefault();
@@ -104,14 +100,23 @@ class App extends React.Component {
   logout = (e) => {
     console.log("Logging out");
     localStorage.setItem("jwt_token", null);
-    this.setState({userEmail: null, favorites: [], isAuthenticated: false});
-  }
+    this.setState({currentUser: {userEmail: null, favorites: [], isAuthenticated: false}});
+  };
+
+  updateUser = (userEmail, favorites, isAuthenticated) => {
+    this.setState({ currentUser: { userEmail, favorites, isAuthenticated }});
+  };
+
+  changeFranchise = (selectedFranchise) => {
+    this.setState({ franchises: { ...this.state.franchises, selected: selectedFranchise }});
+  };
 
   render() {
     const values = {
       user: this.state.currentUser,
       franchises: this.state.franchises,
       updateUser: this.updateUser,
+      changeFranchise: this.changeFranchise,
       logout: this.logout
     };
 
@@ -120,7 +125,7 @@ class App extends React.Component {
         <AppContext.Provider value={values}>
           <AppHeader />
           <AppNav />
-          <AppMain updateUser={this.updateUser} />
+          <AppMain updateUser={this.updateUser} changeFranchise={this.changeFranchise} />
           <AppFooter />
         </AppContext.Provider>
       </React.Fragment>

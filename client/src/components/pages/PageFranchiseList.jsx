@@ -1,48 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { AppContext } from "../app/App.jsx";
 import FranchiseTile from "../ui/FranchiseTile.jsx";
 
 import "./PageFranchiseList.css";
 
 
-class PageFranchiseList extends React.Component {
-  constructor(props) {
-    super(props);
+const PageFranchiseList = (props) => {  
+  const { match } = props;
 
-    this.state = {
-      focusedTile: null,
-      franchises: []
-    };
-  }
-
-  componentDidMount() {
-    fetch("/api/franchises")
-      .then(res => res.json())
-      .then(data => this.setState({franchises: data}));
-  }
-
-  render() {
-    const { match } = this.props;
-
-    return (
-      <main>
-        <section id="section-franchise-tiles">
-        {
-          this.state.franchises.map((franchise, index) =>
-            (
-              <div key={index}>
-                <FranchiseTile slug={franchise.slug} title={franchise.title} imageURL={franchise.imageURL}>
+  return (
+    <AppContext.Consumer>
+      {
+      ({ franchises, changeFranchise }) => (
+        <main>
+          <section id="section-franchise-tiles">
+          {
+            franchises.list.map((franchise, index) => (
+              <div key={index} >
+                <FranchiseTile franchise={franchise} changeFranchise={changeFranchise}>
                   <Link to={`${match.url}/${franchise.slug}`}>{franchise.title}</Link>
                 </FranchiseTile>
-              </div>
+              </div>)
             )
-          )
-        }
-        </section>
-      </main>
-    );
-  };
+          }
+          </section>
+        </main>)
+      }
+    </AppContext.Consumer>
+
+  );
 };
 
 export default PageFranchiseList;

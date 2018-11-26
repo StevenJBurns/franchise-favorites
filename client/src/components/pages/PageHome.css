@@ -22,3 +22,15 @@
   text-align: justify;
   position: relative;
 }
+
+#main-home a:link,
+#main-home a:link {
+  vertical-align: unset;
+  color: #450085;
+  display: inline;
+}
+
+#main-home a:hover,
+#main-home a:visited {
+  color: #450085;
+}

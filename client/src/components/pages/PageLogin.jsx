@@ -85,6 +85,7 @@ class PageLogin extends React.Component {
           <input type="password" id="input-password" name="password" onChange={this.handleChange} required />
           { this.state.fetchError && <h5>BAD PASSWORD</h5> }
           <input type="submit" value="SUBMIT" />
+          <h4>Forgot Your Password?!?</h4>
           <hr></hr>
           <section>
             <button type="submit">FACEBOOK</button>

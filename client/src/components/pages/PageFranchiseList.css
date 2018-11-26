@@ -15,7 +15,7 @@
   filter: opacity(0.1)
 }
 
-#section-franchise-tiles {
+#ul-franchise-tiles {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -26,4 +26,8 @@
   width: auto;
   position: relative;
   cursor: pointer
+}
+
+#ul-franchise-tiles li {
+  background-color: transparent
 }

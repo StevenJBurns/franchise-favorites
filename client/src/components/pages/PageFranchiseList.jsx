@@ -15,17 +15,17 @@ const PageFranchiseList = (props) => {
       {
       ({ franchises, changeFranchise }) => (
         <main id="main-franchises">
-          <section id="section-franchise-tiles">
+          <ul id="ul-franchise-tiles">
           {
             franchises.list.map((franchise, index) => (
-              <div key={index} >
+              <li key={index} >
                 <FranchiseTile franchise={franchise} changeFranchise={changeFranchise}>
-                  <Link to={`${match.url}/${franchise.slug}`}>{franchise.title}</Link>
+                  <Link to={`${match.url}/${franchise.slug}`} />
                 </FranchiseTile>
-              </div>)
+              </li>)
             )
           }
-          </section>
+          </ul>
         </main>)
       }
     </AppContext.Consumer>

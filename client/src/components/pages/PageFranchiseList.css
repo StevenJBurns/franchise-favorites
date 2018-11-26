@@ -1,3 +1,29 @@
-.focusedItem {
-  
+#main-franchises {
+  position: relative;
+  min-width: 100%
+}
+
+#main-franchises::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url("../../assets/film.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: opacity(0.1)
+}
+
+#section-franchise-tiles {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  flex-flow: wrap;
+  margin: 0 auto;
+  width: auto;
+  position: relative;
+  cursor: pointer
 }

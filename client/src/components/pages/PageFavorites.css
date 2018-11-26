@@ -1,0 +1,9 @@
+#main-favorites {
+  width: 100%;
+  max-width: 100%;
+  background: url("../../assets/stars-2.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: opacity(0.5)
+}

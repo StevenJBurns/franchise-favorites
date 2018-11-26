@@ -9,15 +9,3 @@ main {
   text-align: center;
   color: #0F0F0F
 }
-
-#section-franchise-tiles {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-  flex-flow: wrap;
-  margin: 0 auto;
-  width: auto;
-  cursor: pointer
-}

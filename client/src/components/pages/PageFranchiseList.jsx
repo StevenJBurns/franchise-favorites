@@ -14,7 +14,7 @@ const PageFranchiseList = (props) => {
     <AppContext.Consumer>
       {
       ({ franchises, changeFranchise }) => (
-        <main>
+        <main id="main-franchises">
           <section id="section-franchise-tiles">
           {
             franchises.list.map((franchise, index) => (

@@ -19,7 +19,7 @@ const AppHeader = (props) => {
         <FontAwesomeIcon icon={ faFilm } size="3x" />
         <FontAwesomeIcon icon={ faStar } size="2x" color="darkOrange" spin />
       </span>
-      <h2>FRANCHISE FAVORITES</h2>
+      <h2>FRANCHISE &#9734; FAVORITES</h2>
       <AuthenticationPanel className="section-auth" />
     </header>
   );

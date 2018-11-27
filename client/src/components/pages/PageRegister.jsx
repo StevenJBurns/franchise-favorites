@@ -75,7 +75,7 @@ class PageRegister extends React.Component {
     if (this.state.redirectToLogin) return <Redirect to="/login" />
 
     return (
-      <main>
+      <main id="main-register">
         <form id="form-register" onSubmit={this.handleSubmit}>
           <FontAwesomeIcon icon={faUserPlus} size="2x" />
           <h2>REGISTER</h2>

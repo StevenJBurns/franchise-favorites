@@ -80,9 +80,9 @@ class PageLogin extends React.Component {
 
   render() {
     return (
-      <main>
+      <main id="main-login">
         <form id="form-login" onSubmit={this.handleSubmit}>
-        <FontAwesomeIcon icon={faLock} size="2x" />
+          <FontAwesomeIcon icon={faLock} size="2x" />
           <h2>LOGIN</h2>
           <hr></hr>
           <label htmlFor="email">email</label>

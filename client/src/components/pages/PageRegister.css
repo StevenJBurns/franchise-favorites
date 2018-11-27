@@ -1,6 +1,11 @@
+#main-register {
+
+}
+
 #form-register {
   display: flex;
   flex-direction: column;
+  margin: 32px 0;
   padding: 16px;
   width: 320px;
   border-radius: 8px;
@@ -13,9 +18,27 @@
   margin: 4px
 }
 
+#form-register h2 {
+  width: auto;
+  display: inline-block;
+  text-align: left
+}
+
 #form-register button {
   margin: 4px auto;
   width: 128px;
   height: 36px;
   font-size: 20px
+}
+
+@media (max-width: 420px) {
+  #main-register {
+    width: 100%
+  }
+
+  #form-register {
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
 }

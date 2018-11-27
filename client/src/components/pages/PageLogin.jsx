@@ -1,6 +1,11 @@
 import React from "react";
 import { AppContext } from "../app/App.jsx";
 import decodeJWT from "jwt-decode";
+
+/* Font Awesome! */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+
 import "./PageLogin.css";
 
 
@@ -77,7 +82,8 @@ class PageLogin extends React.Component {
     return (
       <main>
         <form id="form-login" onSubmit={this.handleSubmit}>
-          <h3>LOGIN</h3>
+        <FontAwesomeIcon icon={faLock} size="2x" />
+          <h2>LOGIN</h2>
           <hr></hr>
           <label htmlFor="email">email</label>
           <input type="email" id="input-email" name="email" onChange={this.handleChange} required />

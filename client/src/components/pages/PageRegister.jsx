@@ -1,6 +1,10 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 
+/* Font Awesome! */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+
 import "./PageRegister.css";
 
 
@@ -73,7 +77,8 @@ class PageRegister extends React.Component {
     return (
       <main>
         <form id="form-register" onSubmit={this.handleSubmit}>
-          <h3>REGISTER</h3>
+          <FontAwesomeIcon icon={faUserPlus} size="2x" />
+          <h2>REGISTER</h2>
           <hr></hr>
           <label htmlFor="input-email">email</label>
           { this.state.fetchError && <h5>That email is already used</h5> }

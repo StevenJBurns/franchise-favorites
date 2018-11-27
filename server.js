@@ -56,8 +56,7 @@ server.get("*", (req, res) => res.sendFile(path.join(__dirname, "client", "build
 
 /* Express catch-all error handler */
 server.use((err, req, res, next) => {
-  console.log("catch-all: ", err);
-  console.log("headers sent: ", res.headersSent);
+  console.error("catch-all: ", err);
   res.json({"error": err});
 });
 

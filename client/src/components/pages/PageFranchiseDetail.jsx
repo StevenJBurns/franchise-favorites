@@ -20,7 +20,7 @@ class PageFranchiseDetail extends React.Component {
   }
 
   onDragEnd = (result) => {
-    // dropped outside the list
+    /* Return immediately if item is dropped outside the list */
     if (!result.destination) return;
 
     const items = this.reorder(
@@ -41,9 +41,11 @@ class PageFranchiseDetail extends React.Component {
   };
 
   getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? "#6100BB" : "#450085",
-    padding: this.grid,
     width: 288,
+    margin: `${this.grid * 2}px auto`,
+    padding: this.grid,
+    borderRadius: "4px",
+    background: isDraggingOver ? "#6100BB" : "#450085"
   });
 
   getItemStyle = (isDragging, draggableStyle) => ({
@@ -51,10 +53,8 @@ class PageFranchiseDetail extends React.Component {
     userSelect: "none",
     padding: this.grid * 2,
     margin: `${this.grid}px auto`,
-
     // change background colour if dragging
     background: isDragging ? "#B15000" : "#FF7300",
-
     // styles we need to apply on draggables
     ...draggableStyle
   });
@@ -65,7 +65,7 @@ class PageFranchiseDetail extends React.Component {
         {
         ({ user, franchises}) => (
           franchises.selected && 
-            <main>
+            <main id="main-franchise-detail">
               { !user.isAuthenticated && <h2 id="h2-not-authorized">YOU NEED TO LOG IN</h2> }
               <h2>{franchises.selected.title}</h2>
               <DragDropContext onDragEnd={this.onDragEnd}>

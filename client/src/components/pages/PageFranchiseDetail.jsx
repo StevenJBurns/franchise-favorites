@@ -15,14 +15,16 @@ class PageFranchiseDetail extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(this.context);
-
     this.grid = 8;
     this.state = {
       franchises: []
     };
   }
 
+  goBack = (e) => {
+    e.stopPropagation();
+    this.props.history.push("/franchises");
+  }
   onDragEnd = (result) => {
     /* Return immediately if item is dropped outside the list */
     if (!result.destination) return;
@@ -70,7 +72,7 @@ class PageFranchiseDetail extends React.Component {
         ({ user, franchises}) => (
           franchises.selected && 
             <main id="main-franchise-detail">
-              <span style={{fontSize: "24px"}}><FontAwesomeIcon icon={faArrowCircleLeft} size="2x" />BACK TO THE FRANCHISE LIST</span>
+              <span style={{fontSize: "24px", cursor: "pointer"}} onClick={this.goBack}><FontAwesomeIcon icon={faArrowCircleLeft} size="2x" />BACK TO THE FRANCHISE LIST</span>
               { !user.isAuthenticated && <h2 id="h2-not-authorized">YOU NEED TO LOG IN</h2> }
               <h2>{franchises.selected.title}</h2>
               <DragDropContext onDragEnd={this.onDragEnd}>

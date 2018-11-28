@@ -20,7 +20,7 @@ const AppMain = (props) => {
         <Route exact path="/login" render={() => <PageLogin updateUser={props.updateUser} />} />
         <Route exact path="/register" component={PageRegister} />
         <Route exact path="/franchises" render={props => <PageFranchiseList {...props}  />} />
-        <Route path="/franchises/:slug" render={() => <PageFranchiseDetail changeFranchise={props.changeFranchise} />} />
+        <Route path="/franchises/:slug" render={props => <PageFranchiseDetail {...props} changeFranchise={props.changeFranchise} />} />
         <ProtectedRoute path="/favorites" component={PageFavorites} />
         <Route component={Page404} />
       </Switch>

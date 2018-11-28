@@ -1,4 +1,6 @@
 #main-franchise-detail {
+  margin: 0;
+  max-width: 100%;
   position: relative;
 }
 
@@ -10,8 +12,8 @@
   background: url("../../assets/film-2.png");
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: cover;
-  filter: opacity(0.1)
+  background-size: contain;
+  filter: opacity(0.1);
 }
 
 .faArrow {
@@ -22,6 +24,10 @@
 
 .faArrow:hover {
   color: #FF7300
+}
+
+#ul-franchise-movies {
+  position: relative;
 }
 
 #ul-franchise-movies li {

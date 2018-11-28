@@ -18,8 +18,8 @@ const PageFranchiseList = (props) => {
           <ul id="ul-franchise-tiles">
           {
             franchises.list.map((franchise, index) => (
-              <li key={index} >
-                <FranchiseTile franchise={franchise} changeFranchise={changeFranchise}>
+              <li key={index}>
+                <FranchiseTile {...props} franchise={franchise} changeFranchise={changeFranchise}>
                   <Link to={`${match.url}/${franchise.slug}`} />
                 </FranchiseTile>
               </li>)

@@ -2,6 +2,10 @@ import React from "react";
 
 import { AppContext } from "../app/App.jsx";
 
+/* Font Awesome! */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
+
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import "./PageFranchiseDetail.css";
@@ -66,6 +70,7 @@ class PageFranchiseDetail extends React.Component {
         ({ user, franchises}) => (
           franchises.selected && 
             <main id="main-franchise-detail">
+              <span style={{fontSize: "24px"}}><FontAwesomeIcon icon={faArrowCircleLeft} size="2x" />BACK TO THE FRANCHISE LIST</span>
               { !user.isAuthenticated && <h2 id="h2-not-authorized">YOU NEED TO LOG IN</h2> }
               <h2>{franchises.selected.title}</h2>
               <DragDropContext onDragEnd={this.onDragEnd}>

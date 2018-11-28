@@ -25,6 +25,7 @@ class PageFranchiseDetail extends React.Component {
     e.stopPropagation();
     this.props.history.push("/franchises");
   }
+
   onDragEnd = (result) => {
     /* Return immediately if item is dropped outside the list */
     if (!result.destination) return;
@@ -47,7 +48,7 @@ class PageFranchiseDetail extends React.Component {
   };
 
   getListStyle = isDraggingOver => ({
-    width: 288,
+    width: "288px",
     margin: `${this.grid * 2}px auto`,
     padding: this.grid,
     borderRadius: "4px",
@@ -72,7 +73,7 @@ class PageFranchiseDetail extends React.Component {
         ({ user, franchises}) => (
           franchises.selected && 
             <main id="main-franchise-detail">
-              <span style={{fontSize: "24px", cursor: "pointer"}} onClick={this.goBack}><FontAwesomeIcon icon={faArrowCircleLeft} size="2x" />BACK TO THE FRANCHISE LIST</span>
+              <span style={{margin: "16px auto", fontSize: "24px", position: "relative", cursor: "pointer"}} onClick={this.goBack}><FontAwesomeIcon className="faArrow" icon={faArrowCircleLeft} color="#B15000" size="2x" />BACK TO THE FRANCHISE LIST</span>
               { !user.isAuthenticated && <h2 id="h2-not-authorized">YOU NEED TO LOG IN</h2> }
               <h2>{franchises.selected.title}</h2>
               <DragDropContext onDragEnd={this.onDragEnd}>

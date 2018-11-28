@@ -11,9 +11,11 @@ class PageFranchiseDetail extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log(this.context);
+
     this.grid = 8;
     this.state = {
-      items: []
+      franchises: []
     };
   }
 
@@ -22,12 +24,12 @@ class PageFranchiseDetail extends React.Component {
     if (!result.destination) return;
 
     const items = this.reorder(
-      this.state.items,
+      this.state.franchises,
       result.source.index,
       result.destination.index
     );
 
-    this.setState({ items });
+    this.setState({ franchises: items });
   };
 
   reorder = (list, startIndex, endIndex) => {
@@ -39,19 +41,19 @@ class PageFranchiseDetail extends React.Component {
   };
 
   getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? 'lightblue' : 'lightgrey',
+    background: isDraggingOver ? "#6100BB" : "#450085",
     padding: this.grid,
-    width: 250,
+    width: 288,
   });
 
   getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
-    userSelect: 'none',
+    userSelect: "none",
     padding: this.grid * 2,
-    margin: `0 0 ${this.grid}px 0`,
+    margin: `${this.grid}px auto`,
 
     // change background colour if dragging
-    background: isDragging ? 'lightgreen' : 'grey',
+    background: isDragging ? "#B15000" : "#FF7300",
 
     // styles we need to apply on draggables
     ...draggableStyle
@@ -72,15 +74,10 @@ class PageFranchiseDetail extends React.Component {
                   (provided, snapshot) => (
                     <ul id="ul-franchise-movies" ref={provided.innerRef} style={this.getListStyle(snapshot.isDraggingOver)}>
                       {
-                        franchises.selected.movies.map((movie, index) => (
-                          <Draggable key={movie.key} draggableId={movie.key} index={index}>
-                            {
-                            (provided, snapshot) => (
-                              <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={this.getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>{movie.title}</li>
-                            )
-                            }
-                          </Draggable>
-                       ))
+                      franchises.selected.movies.map((movie, index) => (
+                        <Draggable key={movie.key} draggableId={movie.key} index={index}>
+                          {(provided, snapshot) => (<li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={this.getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>{movie.title}</li>)}
+                        </Draggable>))
                       }
                       {provided.placeholder}
                     </ul>
@@ -96,5 +93,7 @@ class PageFranchiseDetail extends React.Component {
   }
 
 };
+
+PageFranchiseDetail.contextType = AppContext;
 
 export default PageFranchiseDetail;

@@ -15,6 +15,7 @@ const PageFranchiseList = (props) => {
       {
       ({ franchises, changeFranchise }) => (
         <main id="main-franchises">
+          <h2>Select a franchise below...</h2>
           <ul id="ul-franchise-tiles">
           {
             franchises.list.map((franchise, index) => (

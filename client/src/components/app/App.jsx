@@ -101,7 +101,7 @@ class App extends React.Component {
   logout = (e) => {
     console.log("Logging out");
     localStorage.setItem("jwt_token", null);
-    this.setState({currentUser: {userEmail: null, favorites: [], isAuthenticated: false}});
+    this.setState({currentUser: {userEmail: null, favorites: {}, isAuthenticated: false}});
   };
 
   updateUser = (userEmail, favorites, isAuthenticated) => {
@@ -112,7 +112,7 @@ class App extends React.Component {
     this.setState({ franchises: { ...this.state.franchises, selected: selectedFranchise }});
   };
 
-  setFavoritesList = _ => {
+  setFavoritesList = objFavoriteList => {
 
   };
 
@@ -130,7 +130,7 @@ class App extends React.Component {
         <AppContext.Provider value={values}>
           <AppHeader />
           <AppNav />
-          <AppMain updateUser={this.updateUser} changeFranchise={this.changeFranchise} />
+          <AppMain updateUser={this.updateUser} changeFranchise={this.changeFranchise} setFavoritesList={this.setFavoritesList} />
           <AppFooter />
         </AppContext.Provider>
       </React.Fragment>

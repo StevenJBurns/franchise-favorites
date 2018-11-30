@@ -23,7 +23,7 @@ class App extends React.Component {
       currentUser: {
         userEmail: null,
         isAuthenticated: false,
-        favorites: []
+        favorites: {}
       },
       franchises: {
         list: [],
@@ -90,6 +90,7 @@ class App extends React.Component {
     .then(body => {
       localStorage.setItem("jwt_token", body.token);
       console.log(this.isTokenExpired());
+
     })
     .catch(err => {
       this.setState({ fetchError: true });
@@ -109,6 +110,10 @@ class App extends React.Component {
 
   changeFranchise = (selectedFranchise) => {
     this.setState({ franchises: { ...this.state.franchises, selected: selectedFranchise }});
+  };
+
+  setFavoritesList = _ => {
+
   };
 
   render() {

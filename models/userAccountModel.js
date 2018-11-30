@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const userAccountSchema = new mongoose.Schema({
   userEmail: { type: String, required: true },
   password: { type: String, required: true },
-  favorites: { type: Array },
-  characters: { type: Array }
+  favorites: { type: Object }
 },
 {
   collection: 'userAccounts'

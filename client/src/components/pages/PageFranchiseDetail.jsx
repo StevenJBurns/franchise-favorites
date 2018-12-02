@@ -6,6 +6,7 @@ import { AppContext } from "../app/App.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
+/* react-beautiful-dnd for drag and drop */
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import "./PageFranchiseDetail.css";
@@ -17,8 +18,12 @@ class PageFranchiseDetail extends React.Component {
 
     this.grid = 8;
     this.state = {
-      franchises: []
+      list: {}
     };
+  }
+
+  componentDidMount() {
+    // console.log("Detail props: ", this.props);
   }
 
   goBack = (e) => {
@@ -31,15 +36,17 @@ class PageFranchiseDetail extends React.Component {
     if (!result.destination) return;
 
     const items = this.reorder(
-      this.state.franchises,
+      this.state.items,
       result.source.index,
       result.destination.index
     );
 
-    this.setState({ franchises: items });
+    this.setState({list: items})
+
+    if (items.length) this.props.setFavoritesList(items);
   };
 
-  reorder = (list, startIndex, endIndex) => {
+  reorder = (list = [], startIndex, endIndex) => {
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -70,31 +77,38 @@ class PageFranchiseDetail extends React.Component {
     return (
       <AppContext.Consumer>
         {
-        ({ user, franchises}) => (
-          franchises.selected && 
+        ({ user, franchises, setFavoritesList }) => {
+          //if (franchises.selected && !user.favorites[franchises.selected]) setFavoritesList(franchises.selected.movies);
+
+          let userFavorites;
+
+          if (user.favorites[franchises.selected]) userFavorites = user.favorites[franchises.selected];
+
+          return (
+            userFavorites && 
             <main id="main-franchise-detail">
               <span style={{margin: "16px auto", fontSize: "24px", position: "relative", cursor: "pointer"}} onClick={this.goBack}><FontAwesomeIcon className="faArrow" icon={faArrowCircleLeft} color="#B15000" size="2x" />BACK TO THE FRANCHISE LIST</span>
               { !user.isAuthenticated && <h2 id="h2-not-authorized">YOU NEED TO LOG IN</h2> }
               <h2>{franchises.selected.title}</h2>
               <DragDropContext onDragEnd={this.onDragEnd}>
                 <Droppable droppableId="droppable">
-                  {
-                  (provided, snapshot) => (
+                  {(provided, snapshot) => (
                     <ul id="ul-franchise-movies" ref={provided.innerRef} style={this.getListStyle(snapshot.isDraggingOver)}>
                       {
-                      franchises.selected.movies.map((movie, index) => (
+                      userFavorites.map((movie, index) => (
                         <Draggable key={movie.key} draggableId={movie.key} index={index}>
-                          {(provided, snapshot) => (<li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={this.getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>{movie.title}</li>)}
+                          {(provided, snapshot) => (
+                            <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps} style={this.getItemStyle(snapshot.isDragging, provided.draggableProps.style)}>{movie.title}</li>
+                            )}
                         </Draggable>))
                       }
                       {provided.placeholder}
                     </ul>
-                    )
-                  }
+                  )}
                 </Droppable>
               </DragDropContext>
             </main>
-          )
+          )}
         }
       </AppContext.Consumer>
     );

@@ -112,8 +112,12 @@ class App extends React.Component {
     this.setState({ franchises: { ...this.state.franchises, selected: selectedFranchise }});
   };
 
-  setFavoritesList = objFavoriteList => {
+  setFavoritesList = (arrFavoriteList) => {
+    let objFavoriteList = { ...arrFavoriteList };
 
+    console.log("objFavoriteList: ", objFavoriteList);
+
+    this.setState({...this.state, currentUser: {...this.state.currentUser, favorites: {...this.state.currentUser.favorites, objFavoriteList}}})
   };
 
   render() {
@@ -122,6 +126,7 @@ class App extends React.Component {
       franchises: this.state.franchises,
       updateUser: this.updateUser,
       changeFranchise: this.changeFranchise,
+      setFavoritesList: this.setFavoritesList,
       logout: this.logout
     };
 

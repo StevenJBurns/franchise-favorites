@@ -12,7 +12,7 @@
     "react": "^16.8.2",
     "react-beautiful-dnd": "^10.0.4",
     "react-dom": "^16.8.2",
-    "react-flip-toolkit": "^6.5.5",
+    "react-flip-toolkit": "^6.5.6",
     "react-overdrive": "0.0.10",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.5"

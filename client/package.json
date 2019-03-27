@@ -10,7 +10,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "jwt-decode": "^2.2.0",
     "react": "^16.8.5",
-    "react-beautiful-dnd": "^10.1.0",
+    "react-beautiful-dnd": "^10.1.1",
     "react-dom": "^16.8.5",
     "react-flip-toolkit": "^6.5.7",
     "react-overdrive": "0.0.10",

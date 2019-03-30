@@ -1,17 +1,9 @@
 import React from "react";
-
-import { AppContext } from "../app/App.jsx";
-
-/* Font Awesome! */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
-
-/* react-beautiful-dnd for drag and drop */
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-
+import { AppContext } from "../app/App.jsx";
 import "./PageFranchiseDetail.css";
-
-
 class PageFranchiseDetail extends React.Component {
   constructor(props) {
     super(props);

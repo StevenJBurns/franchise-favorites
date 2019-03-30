@@ -1,13 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-
-/* Font Awesome! */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
-
 import "./PageRegister.css";
-
-
 class PageRegister extends React.Component {
   constructor(props) {
     super(props);

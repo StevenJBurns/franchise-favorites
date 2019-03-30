@@ -1,18 +1,12 @@
 import React from "react";
-import { AppContext } from "../app/App.jsx";
 import decodeJWT from "jwt-decode";
-
-/* Font Awesome! */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-
+import { AppContext } from "../app/App.jsx";
 import "./PageLogin.css";
-
-
 class PageLogin extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       email: null,
       password: null,

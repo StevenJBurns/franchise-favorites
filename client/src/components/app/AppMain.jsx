@@ -3,6 +3,7 @@ import { Switch, Route, withRouter } from "react-router-dom";
 
 import ProtectedRoute from "../routes/ProtectedRoute.jsx";
 
+import { UserContext } from "./App.jsx";
 import PageHome from "../pages/PageHome";
 import PageRegister from "../pages/PageRegister";
 import PageLogin from "../pages/PageLogin";
@@ -11,20 +12,29 @@ import PageFranchiseDetail from "../pages/PageFranchiseDetail"
 import PageFavorites from "../pages/PageFavorites";
 import Page404 from "../pages/Page404";
 
-
 const AppMain = (props) => {
+  const {updateUser, changeFranchise, setFavoritesList} = React.useContext(UserContext);
+
   return (
-    <React.Fragment>
-      <Switch>
-        <Route exact path="/" component={PageHome} />
-        <Route exact path="/login" render={() => <PageLogin updateUser={props.updateUser} />} />
-        <Route exact path="/register" component={PageRegister} />
-        <Route exact path="/franchises" render={props => <PageFranchiseList {...props}  />} />
-        <Route path="/franchises/:slug" render={() => <PageFranchiseDetail {...props} changeFranchise={props.changeFranchise} setFavoritesList={props.setFavoritesList} />} />
-        <ProtectedRoute path="/favorites" component={PageFavorites} />
-        <Route component={Page404} />
-      </Switch>
-    </React.Fragment>
+    <Switch>
+      <Route exact path="/">
+        <PageHome />
+      </Route>>
+      <Route exact path="/login">
+        <PageLogin updateUser={props.updateUser} />
+      </Route>
+      <Route exact path="/register">
+        <PageRegister />
+      </Route>
+      <Route exact path="/franchises">
+        <PageFranchiseList {...props}  />
+      </Route>>
+      <Route path="/franchises/:slug">
+        <PageFranchiseDetail {...props} changeFranchise={changeFranchise} setFavoritesList={setFavoritesList} />
+      </Route>
+      <ProtectedRoute path="/favorites" component={PageFavorites} />
+      <Route component={Page404} />
+    </Switch>
   );
 };
 

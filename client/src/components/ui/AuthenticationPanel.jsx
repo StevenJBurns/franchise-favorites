@@ -7,10 +7,8 @@ import "./Authentication.css";
 
 export const AuthenticationPanel = props => {
   const user = React.useContext(UserContext);
-
-  console.log(user);
-
-  return null
+  
+  return (<h6>AuthenticationPanel</h6>);
 
   // return (
   //   <UserContext.Consumer>

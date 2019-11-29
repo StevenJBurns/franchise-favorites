@@ -2,7 +2,7 @@ import React from "react";
 import decodeJWT from "jwt-decode";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { AppContext } from "../app/App.jsx";
+import { UserContext } from "../app/App.jsx";
 import "./PageLogin.css";
 class PageLogin extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class PageLogin extends React.Component {
       fetchError: false
     };
   };
-  static contextType = AppContext;
+  static contextType = UserContext;
 
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
@@ -97,6 +97,6 @@ class PageLogin extends React.Component {
   };
 };
 
-PageLogin.contextType = AppContext;
+PageLogin.contextType = UserContext;
 
 export default PageLogin;

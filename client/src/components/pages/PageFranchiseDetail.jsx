@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { AppContext } from "../app/App.jsx";
+import { UserContext } from "../app/App.jsx";
 import "./PageFranchiseDetail.css";
 class PageFranchiseDetail extends React.Component {
   constructor(props) {
@@ -67,7 +67,7 @@ class PageFranchiseDetail extends React.Component {
 
   render() {
     return (
-      <AppContext.Consumer>
+      <UserContext.Consumer>
         {
         ({ user, franchises, setFavoritesList }) => {
           //if (franchises.selected && !user.favorites[franchises.selected]) setFavoritesList(franchises.selected.movies);
@@ -102,12 +102,12 @@ class PageFranchiseDetail extends React.Component {
             </main>
           )}
         }
-      </AppContext.Consumer>
+      </UserContext.Consumer>
     );
   }
 
 };
 
-PageFranchiseDetail.contextType = AppContext;
+PageFranchiseDetail.contextType = UserContext;
 
 export default PageFranchiseDetail;

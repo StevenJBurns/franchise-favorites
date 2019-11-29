@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { AppContext } from "../app/App.jsx";
+import { UserContext } from "../app/App.jsx";
 import FranchiseTile from "../ui/FranchiseTile.jsx";
 
 import "./PageFranchiseList.css";
@@ -11,7 +11,7 @@ const PageFranchiseList = (props) => {
   const { match } = props;
 
   return (
-    <AppContext.Consumer>
+    <UserContext.Consumer>
       {
       ({ franchises, changeFranchise }) => (
         <main id="main-franchises">
@@ -29,7 +29,7 @@ const PageFranchiseList = (props) => {
           </ul>
         </main>)
       }
-    </AppContext.Consumer>
+    </UserContext.Consumer>
 
   );
 };

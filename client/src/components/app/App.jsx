@@ -10,43 +10,34 @@ import AppFooter from "./AppFooter.jsx";
 import '../../styles/App.css';
 import './AppComponents.css';
 
-
 /* Create a Context API object to be used here as Provider and exported for Consumers */
-export const AppContext = React.createContext({});
+export const UserContext = React.createContext({
+  name: '',
+  isAuthenticated: false,
+  favorites: [],
+});
 
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+export const App = () => {
+  const [currentUser, setCurrentUser] = React.useState({});
+  const [franchiseData, setFranchiseData] = React.useState([]);
 
-    this.state = {
-      currentUser: {
-        userEmail: null,
-        isAuthenticated: false,
-        favorites: {}
-      },
-      franchises: {
-        list: [],
-        selected: null
-      },
-      errors: []
+  React.useEffect(() => {
+    /* fetch the franchise data via the API and store */
+    const fetchData = async () => {
+      const response = fetch("/api/franchises").then(res => res.json())
+      setFranchiseData(response);
     }
-  };
+    fetchData();
+  }, []);
 
-  async componentDidMount() {
-    /* Grab the franchise list via the server API and save it to this.state */
-    await fetch("/api/franchises")
-      .then(res => res.json())
-      .then(data => this.setState({franchises: {...this.state.franchises, list: data}}));
-  };
-
-  register = (e) => {
+  const register = (e) => {
     e.preventDefault();
 
-    let requestBody = {
-      "email": this.state.email,
-      "password": this.state.password
-    };
+  let requestBody = {
+    "email": this.state.email,
+    "password": this.state.password
+  };
 
     fetch("/auth/register", {
       method: "POST",
@@ -59,7 +50,7 @@ class App extends React.Component {
     .then((res) => console.log(res));
   };
 
-  login = async (email, password) => {
+  const login = async (email, password) => {
     const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -98,21 +89,21 @@ class App extends React.Component {
     });
   };
 
-  logout = (e) => {
+  const logout = (e) => {
     console.log("Logging out");
     localStorage.setItem("jwt_token", null);
     this.setState({currentUser: {userEmail: null, favorites: {}, isAuthenticated: false}});
   };
 
-  updateUser = (userEmail, favorites, isAuthenticated) => {
+  const updateUser = (userEmail, favorites, isAuthenticated) => {
     this.setState({ currentUser: { userEmail, favorites, isAuthenticated }});
   };
 
-  changeFranchise = (selectedFranchise) => {
+  const changeFranchise = (selectedFranchise) => {
     this.setState({ franchises: { ...this.state.franchises, selected: selectedFranchise }});
   };
 
-  setFavoritesList = (arrFavoriteList) => {
+  const setFavoritesList = (arrFavoriteList) => {
     let objFavoriteList = { ...arrFavoriteList };
 
     console.log("objFavoriteList: ", objFavoriteList);
@@ -120,27 +111,25 @@ class App extends React.Component {
     this.setState({...this.state, currentUser: {...this.state.currentUser, favorites: {...this.state.currentUser.favorites, objFavoriteList}}})
   };
 
-  render() {
-    const values = {
-      user: this.state.currentUser,
-      franchises: this.state.franchises,
-      updateUser: this.updateUser,
-      changeFranchise: this.changeFranchise,
-      setFavoritesList: this.setFavoritesList,
-      logout: this.logout
-    };
-
-    return (
-      <React.Fragment>
-        <AppContext.Provider value={values}>
-          <AppHeader />
-          <AppNav />
-          <AppMain updateUser={this.updateUser} changeFranchise={this.changeFranchise} setFavoritesList={this.setFavoritesList} />
-          <AppFooter />
-        </AppContext.Provider>
-      </React.Fragment>
-    );
+  const values = {
+    user: currentUser.name,
+    franchises: franchiseData,
+    updateUser: updateUser,
+    changeFranchise: changeFranchise,
+    setFavoritesList: setFavoritesList,
+    logout: logout
   };
+
+  return (
+    <React.Fragment>
+      <UserContext.Provider value={values}>
+        <AppHeader />
+        <AppNav />
+        <AppMain updateUser={updateUser} changeFranchise={changeFranchise} setFavoritesList={setFavoritesList} />
+        <AppFooter />
+      </UserContext.Provider>
+    </React.Fragment>
+  );
 };
 
 export default App;

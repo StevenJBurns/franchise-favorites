@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const Page404 = () => {
+export const Page404 = () => {
   return (
     <main>
       <h1>PAGE 404</h1>

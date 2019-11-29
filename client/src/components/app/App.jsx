@@ -92,11 +92,19 @@ export const App = () => {
   const logout = (e) => {
     console.log("Logging out");
     localStorage.setItem("jwt_token", null);
-    this.setState({currentUser: {userEmail: null, favorites: {}, isAuthenticated: false}});
+    setCurrentUser({
+      name: null,
+      favorites: [],
+      isAuthenticated: false,
+    });
   };
 
   const updateUser = (userEmail, favorites, isAuthenticated) => {
-    this.setState({ currentUser: { userEmail, favorites, isAuthenticated }});
+    setCurrentUser({
+      name: userEmail,
+      favorites: [],
+      isAuthenticated: true,
+    });
   };
 
   const changeFranchise = (selectedFranchise) => {

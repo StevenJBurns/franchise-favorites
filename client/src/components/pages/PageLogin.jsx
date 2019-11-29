@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { UserContext } from "../app/App.jsx";
 import "./PageLogin.css";
-class PageLogin extends React.Component {
+export class PageLogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

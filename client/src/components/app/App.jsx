@@ -2,6 +2,7 @@ import React from 'react';
 
 /* Local Component Imports */
 import AppHeader from "./AppHeader.jsx";
+import { AppRouter } from './AppRouter/AppRouter';
 import AppMain from "./AppMain.jsx";
 import AppNav from "./AppNav.jsx";
 import AppFooter from "./AppFooter.jsx";
@@ -81,12 +82,8 @@ export const App = () => {
     .then(body => {
       localStorage.setItem("jwt_token", body.token);
       console.log(this.isTokenExpired());
-
     })
-    .catch(err => {
-      this.setState({ fetchError: true });
-      console.error(err);
-    });
+    .catch(err => console.error(err));
   };
 
   const logout = (e) => {
@@ -133,7 +130,8 @@ export const App = () => {
       <UserContext.Provider value={values}>
         <AppHeader />
         <AppNav />
-        <AppMain updateUser={updateUser} changeFranchise={changeFranchise} setFavoritesList={setFavoritesList} />
+        <AppRouter />
+        {/* <AppMain updateUser={updateUser} changeFranchise={changeFranchise} setFavoritesList={setFavoritesList} /> */}
         <AppFooter />
       </UserContext.Provider>
     </React.Fragment>

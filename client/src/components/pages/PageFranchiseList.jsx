@@ -4,8 +4,7 @@ import { UserContext } from "../app/App.jsx";
 import FranchiseTile from "../ui/FranchiseTile.jsx";
 import "./PageFranchiseList.css";
 
-
-const PageFranchiseList = (props) => {  
+export const PageFranchiseList = (props) => {
   const { match } = useParams();
 
   console.log('match: ', match);

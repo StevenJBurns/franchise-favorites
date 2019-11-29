@@ -4,7 +4,7 @@ import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { UserContext } from "../app/App.jsx";
 import "./PageFranchiseDetail.css";
-class PageFranchiseDetail extends React.Component {
+export class PageFranchiseDetail extends React.Component {
   constructor(props) {
     super(props);
 
@@ -105,7 +105,6 @@ class PageFranchiseDetail extends React.Component {
       </UserContext.Consumer>
     );
   }
-
 };
 
 PageFranchiseDetail.contextType = UserContext;

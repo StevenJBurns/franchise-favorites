@@ -1,3 +1,8 @@
+/*  *** mLab has migrated to Atlas ***
+mLab connection string is broken
+account needs to be migrated to Atlas
+*/
+
 /* Node Dependencies */
 const path = require("path");
 
@@ -31,7 +36,7 @@ server.use(express.json());
 /* connect to MongoDB via mongoose */
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then(() => console.log(chalk.bgWhite.black(`        Connected to MongoDB           `)))
-  .catch(err => console.log(err));
+  .catch(() => console.log(chalk.bgRed.black(`      Error Connecting to MongoDB      `)));
 
 /* serve-favicon Middleware */
 server.use(favicon(path.join(__dirname, "public", "favicon.ico")));

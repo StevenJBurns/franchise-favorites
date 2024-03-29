@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
 const franchiseSchema = new mongoose.Schema({
   title: { type: String, required: true },
@@ -10,4 +10,4 @@ const franchiseSchema = new mongoose.Schema({
   collection: 'franchises'
 });
 
-module.exports = Franchise = mongoose.model("franchise", franchiseSchema);
+export const Franchise = mongoose.model("franchise", franchiseSchema);

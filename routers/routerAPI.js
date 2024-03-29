@@ -1,9 +1,13 @@
+import { Router } from 'express';
+import { Franchise } from '../models/franchiseModel.js';
+import { UserAccount } from '../models/userAccountModel.js';
+ 
 /* Create a router via Exoress */
-const routerAPI = require("express").Router();
+export const routerAPI = Router();
 
 /* Import Mongo data models to use in API routes */
-const Franchise = require("../models/franchiseModel.js");
-const UserAccount = require("../models/userAccountModel.js");
+// const Franchise = require("../models/franchiseModel.js");
+// const UserAccount = require("../models/userAccountModel.js");
 
 
 routerAPI.get("/franchises", (req, res) => {
@@ -17,5 +21,3 @@ routerAPI.get("/userAccounts", (req, res) => {
     .then(users => res.json(users))
     .catch(err => console.error(err));
 });
-
-module.exports = routerAPI;

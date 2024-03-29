@@ -1,15 +1,13 @@
+import { Router } from 'express';
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
+import { UserAccount } from '../models/userAccountModel.js';
+
 /* Create an auth specific router via Exoress */
-const routerAuth = require("express").Router();
+export const routerAuth = Router();
 
-/* bcrypt and JWT external dependencies */
 const SALT = 10;
-const bcryptjs = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-
-/* Local Dependencies */
-const UserAccount = require("../models/userAccountModel.js");
-
-
 const SECRET = process.env.SECRET_KEY;
 
 routerAuth.post("/register", async (req, res, next) => {
@@ -51,5 +49,3 @@ routerAuth.post("/login", async (req, res, next) => {
   
   return res.status(200).send({"userEmail": exisitingUser.userEmail, "favorites": exisitingUser.favorites, "token": token});
 });
-
-module.exports = routerAuth;

@@ -4,24 +4,25 @@ account needs to be migrated to Atlas
 */
 
 /* Node Dependencies */
-const path = require("path");
+import * as path from 'path';
 
 /* External Dependencies */
-const chalk = require("chalk");
-const express = require("express");
-const favicon = require("serve-favicon");
-const expressJWT = require("express-jwt");
-const mongoose = require("mongoose");
-const logger = require("morgan");
+import { config } from 'dotenv';
+import chalk from 'chalk';
+import express from 'express';
+import favicon from 'serve-favicon'; 
+import expressJWT from 'express-jwt';
+import mongoose from 'mongoose';
+import logger from 'morgan';
 
 /* Local Dependencies */
 /* Two distinct Express Router objects for /auth and /api */
-let routerAPI = require("./routers/routerAPI.js");
-let routerAuth = require("./routers/routerAuth.js");
+import { routerAPI } from './routers/routerAPI.js';
+import { routerAuth } from './routers/routerAuth.js';
 
 
 /* Connect .env file values to Node process.env */
-require("dotenv").config();
+config();
 
 /* Clear the console and create the Express server */
 const server = new express();
@@ -39,7 +40,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .catch(() => console.log(chalk.bgRed.black(`      Error Connecting to MongoDB      `)));
 
 /* serve-favicon Middleware */
-server.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+server.use(favicon(path.join(path.__dirname, 'public', 'favicon.ico')));
 
 /* JWT Middleware */
 // server.use("/", expressJWT({ secret: process.env.SECRET_KEY}), (req, res, next) => {
@@ -47,22 +48,22 @@ server.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 // });
 
 /* Routing Middleware to catch the index.html request and serve up the React client */
-server.use("/", express.static(path.join(__dirname, "client", "build")));
+server.use('/', express.static(path.join(__dirname, 'client', 'build')));
 
 /* Routing Middleware to catch requests for static assets */
-server.use("/public", express.static(path.join(__dirname, "public")));
+server.use('/public', express.static(path.join(__dirname, 'public')));
 
 /* Routers to catch /auth and /api routes */
-server.use("/auth", routerAuth);
-server.use("/api", routerAPI);
+server.use('/auth', routerAuth);
+server.use('/api', routerAPI);
 
 /* Catch-All middleware routing that serves up React client for non-API URLs vs a 404 error */
-server.get("*", (req, res) => res.sendFile(path.join(__dirname, "client", "build", "index.html")));
+server.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')));
 
 /* Express catch-all error handler */
 server.use((err, req, res, next) => {
-  console.error("catch-all: ", err);
-  res.json({"error": err});
+  console.error('catch-all: ', err);
+  res.json({'error': err});
 });
 
 /* Start the Express server */ 

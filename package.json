@@ -4,6 +4,7 @@
   "version": "0.6.0",
   "license": "ISC",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",

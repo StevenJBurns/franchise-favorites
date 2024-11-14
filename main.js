@@ -27,7 +27,7 @@ config();
 /* Clear the console and create the Express server */
 const server = new express();
 console.clear();
-
+console.log(import.meta.dirname);
 /* Morgan Middleware for logging */
 server.use(logger("dev"));
 
@@ -40,7 +40,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .catch(() => console.log(chalk.bgRed.black(`      Error Connecting to MongoDB      `)));
 
 /* serve-favicon Middleware */
-server.use(favicon(path.join(path.__dirname, 'public', 'favicon.ico')));
+server.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 /* JWT Middleware */
 // server.use("/", expressJWT({ secret: process.env.SECRET_KEY}), (req, res, next) => {
@@ -58,7 +58,7 @@ server.use('/auth', routerAuth);
 server.use('/api', routerAPI);
 
 /* Catch-All middleware routing that serves up React client for non-API URLs vs a 404 error */
-server.get('*', (req, res) => res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')));
+server.get('*', (_, res) => res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')));
 
 /* Express catch-all error handler */
 server.use((err, req, res, next) => {
@@ -66,7 +66,10 @@ server.use((err, req, res, next) => {
   res.json({'error': err});
 });
 
-/* Start the Express server */ 
-server.listen(process.env.PORT || 8000, () =>
-  console.log(chalk.bgWhite.black(`  Express Server Started on Port ${process.env.PORT}  `))
-);
+function main(server) {
+  server.listen(process.env.PORT || 8000, () =>
+    console.log(chalk.bgWhite.black(`  Express Server Started on Port ${process.env.PORT}  `))
+  );
+};
+
+main(server);
